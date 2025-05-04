@@ -64,6 +64,8 @@ export const orderData = (type,data,value,enable)=>{
 
 //TODO--> CAMBIAR EL FORMATO DE LA FECHA
 export const formatDate = (date)=>{
+  //console.log("datedd: ",date);
+  
 
   let result
   try {
@@ -161,12 +163,14 @@ export const datePay = (data,day)=>{
   let result;
   let color
   
+  
   let [anioToDay, mesToDay, diaToDay] = day?.split("-");
   
     if (data != undefined) { // Calcula la fecha de pago
       result = data.resultPrestamo?.find(
         (element) => element.statusPay == false
       );
+      
 
       let [anio, mes, dia] = result?.fechaPago?.split("-");
       

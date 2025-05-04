@@ -33,11 +33,18 @@ export const sumarMes = (data,i)=>{
 }
  // Esta función es la que se utilizará para el cálculo de las fechas de acuerdo al tipo de periodo
 export const paymentDate = (data, value)=>{
+console.log("dataPAYMENT:", data);
+console.log("value: ",value);
+
 
     // Agregamos un dia a la decha de la primera cuota, porque por defecto del metododo "new Date" sale con un dia anterior a la fecha seleccionado
     const date = add(new Date(data.fechaPrimeraCuota), {
         days:1
       });
+      console.log("date: ",date);
+      console.log("dateDATE: ",format(date,'yyyy-MM-dd'));
+      
+      
 
     let constante =1
     let time=''
@@ -61,9 +68,16 @@ export const paymentDate = (data, value)=>{
     }
 
     // Cronograma de las fechas de acuerdo al periodo
+    console.log("time: ",time)
+    console.log("new Date(date): ",new Date(date));
+    ;
+    
     const newDate = add(new Date(date), {
-        [time]: [constante*value]
+        [time]: constante*value
       });
+      console.log("newDate: ",newDate);
+      
+      console.log("format(newDate,'yyyy-MM-dd'): ",format(newDate,'yyyy-MM-dd'));
       
       return format(newDate,'yyyy-MM-dd')
 }
