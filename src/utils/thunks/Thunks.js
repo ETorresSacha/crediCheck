@@ -64,8 +64,6 @@ export const orderData = (type,data,value,enable)=>{
 
 //TODO--> CAMBIAR EL FORMATO DE LA FECHA
 export const formatDate = (date)=>{
-  //console.log("datedd: ",date);
-  
 
   let result
   try {
@@ -123,8 +121,6 @@ let toDay = format(new Date(), 'MM-dd-yyyy')
   resultDia=result
  }
 
-  
-
   }
 return resultDia
 
@@ -163,7 +159,6 @@ export const datePay = (data,day)=>{
   let result;
   let color
   
-  
   let [anioToDay, mesToDay, diaToDay] = day?.split("-");
   
     if (data != undefined) { // Calcula la fecha de pago
@@ -171,7 +166,6 @@ export const datePay = (data,day)=>{
         (element) => element.statusPay == false
       );
       
-
       let [anio, mes, dia] = result?.fechaPago?.split("-");
       
       // Clasifica el color de las alertas, de acuerdo a la fecha de pago
