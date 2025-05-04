@@ -1,10 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View, Platform } from "react-native";
+import Routes from "./src/routes/Routes.jsx";
+//import { Provider as PaperProvider, RadioButton } from "react-native-paper";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <View
+      style={{
+        flex: 1,
+        paddingTop: Platform.OS === "android" ? 30 : 0,
+      }}
+    >
+     
+      <Routes />
       <StatusBar style="auto" />
     </View>
   );
@@ -13,8 +21,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "rgb(31, 36, 36)",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

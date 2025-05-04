@@ -24,6 +24,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c4c321b6-ea4e-4ea6-8abc-93b5b9e7bf21"
+      }
+    },
+    "owner": "erikk31"
   }
 }
