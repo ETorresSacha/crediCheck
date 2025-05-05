@@ -46,6 +46,7 @@ const Detail = (props) => {
       console.error(error);
     }
   };
+  console.log("updatePrestamo: ", updatePrestamo);
 
   useFocusEffect(
     React.useCallback(() => {

@@ -5,7 +5,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import ModalOptionsCustomer from "../../modals/modalOptionsCustomer/ModalOptionsCustomer";
 import Entypo from "@expo/vector-icons/Entypo";
 
-const Header = ({ title, back, data, setValueImport }) => {
+const Header = ({ title, back, data, setValueImport, dataConfiguration }) => {
   const [isVisible, setIsVisible] = useState(false);
   const navigation = useNavigation();
 
@@ -59,6 +59,7 @@ const Header = ({ title, back, data, setValueImport }) => {
         visible={isVisible}
         setIsVisible={setIsVisible}
         setValueImport={setValueImport}
+        dataConfiguration={dataConfiguration}
       />
     </View>
   );

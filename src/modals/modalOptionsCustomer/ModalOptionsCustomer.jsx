@@ -15,11 +15,16 @@ const optionsData = [
   { name: "Importar Data", symbolName: "database-arrow-left" },
 ];
 
-const ModalOptionsCustomer = ({ visible, setIsVisible, setValueImport }) => {
+const ModalOptionsCustomer = ({
+  visible,
+  setIsVisible,
+  setValueImport,
+  dataConfiguration,
+}) => {
   const options = (value) => {
     switch (value) {
       case "Exportar Data":
-        createExcel();
+        createExcel(dataConfiguration);
         break;
       case "Importar Data":
         setValueImport(true);

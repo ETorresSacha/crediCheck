@@ -100,6 +100,7 @@ const Customer = (props) => {
           <Header
             title={!enable ? "Clientes" : "Clientes cancelados"}
             setValueImport={setValueImport}
+            dataConfiguration={dataConfiguration}
           />
           <NavBar
             data={data}
