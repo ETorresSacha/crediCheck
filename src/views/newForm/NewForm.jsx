@@ -37,6 +37,7 @@ const NewForm = (props) => {
   const dataConfiguration = props.route.params?.dataConfiguration; // Datos de la configuración
 
   // ****
+
   const [dataPerson, setDataPerson] = useState({
     uuid: !user ? uuid : user?.uuid,
     nombre: !user ? "" : user?.nombre,
@@ -186,6 +187,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#181b21",
     display: "flex",
+    paddingTop: 30,
   },
   buttonContainer: {
     alignItems: "center",

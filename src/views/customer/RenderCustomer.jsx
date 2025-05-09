@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(36, 146, 224, 0.625)",
     marginHorizontal: 7,
-    marginTop: 15,
+    //marginTop: 15,
     marginBottom: 5,
   },
   containerTitle: {

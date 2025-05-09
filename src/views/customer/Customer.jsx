@@ -51,7 +51,6 @@ const Customer = (props) => {
       console.error(error);
     }
   };
-
   // clasificación de los clientes de acuerdo a la fecha de pago
   const resultCustomer = () => {
     setInicio(false);
@@ -131,5 +130,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#181b21",
+    paddingTop: 15,
   },
 });

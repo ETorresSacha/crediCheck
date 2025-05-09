@@ -5,68 +5,80 @@ import { Buffer } from "buffer";
 import UseStorage from "../../components/hooks/UseHookStorage";
 import { calculoMoraSimple } from "../../utils/calculoCuota/CalculosFuncionesCrediticios";
 
-const { onGetCronograma } = UseStorage();
 
 export const createExcel = async (dataConfiguration) => {
-console.log("export");
-console.log("dataConfiguration: ",dataConfiguration);
-
-
-  // Traemos todos los datos guardados en el storage
+  const { onGetCronograma } = UseStorage();
+  try {
+    // Traemos todos los datos guardados en el storage
   let resultCustomer = await onGetCronograma();
 
-  resultCustomer = resultCustomer?.map(element=>{
-    let newResult = element?.resultPrestamo.map(ele=>{
-      let objeto = {...ele, mora:ele?.statusPay ? ele?.mora :calculoMoraSimple(ele,dataConfiguration)}  
-      return objeto
-    })
+  // Ánalisis de la mora por cada cliente
+  // // resultCustomer = resultCustomer?.map(element=>{
+  // //   let newResult = element?.resultPrestamo.map(ele=>{
+  // //     let objeto = {...ele, mora:ele?.statusPay ? ele?.mora :calculoMoraSimple(ele,dataConfiguration)}  
+  // //     return objeto
+  // //   })
     
-     newResult = {...element,resultPrestamo:newResult}
+  // //    newResult = {...element,resultPrestamo:newResult}
     
-    return newResult
+  // //   return newResult
     
-  })
-  console.log("resultCustomer:",resultCustomer[0]?.resultPrestamo);
+  // // })
+ // console.log("resultCustomer:",resultCustomer[0]);
  //console.log("resultCustomer: ",resultCustomer);
   
   
 
-  // // Convertimos el resultPrestamos de cada elemento a un string
-  // resultCustomer.map((element)=> element.resultPrestamo=JSON.stringify(element?.resultPrestamo))
+  // Convertimos el resultPrestamos de cada elemento a un string
+  resultCustomer.map((element)=> element.resultPrestamo=JSON.stringify(element?.resultPrestamo))
 
-  // // Convertir el array de objetos a un array de arrays
-  // const worksheetData = [
-  //    Object.keys(resultCustomer[0]), // Encabezados
-  //   ...resultCustomer.map((item) => Object.values(item)), // Filas de datos
-  // ];
+  // Convertir el array de objetos a un array de arrays
+  const worksheetData = [
+     Object.keys(resultCustomer[0]), // Encabezados
+    ...resultCustomer.map((item) => Object.values(item)), // Filas de datos
+  ];
+//console.log("worksheetData: ",worksheetData);
 
-  //   // Crear una nueva hoja de cálculo
-  //   const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+    // Crear una nueva hoja de cálculo
+    const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
 
-  //   // Crear un nuevo libro de trabajo
-  //   const workbook = XLSX.utils.book_new();
+    // Crear un nuevo libro de trabajo
+    const workbook = XLSX.utils.book_new();
+    
 
-  //   // Añadir la hoja de cálculo al libro de trabajo
-  //   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    // Añadir la hoja de cálculo al libro de trabajo
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
 
-  //   // Generar el archivo Excel en formato binario
-  //   const excelBinary = XLSX.write(workbook, {
-  //     type: "binary",
-  //     bookType: "xlsx",
-  //   });
+    // Generar el archivo Excel en formato binario
+    const excelBinary = XLSX.write(workbook, {
+      type: "binary",
+      bookType: "xlsx",
+    });
 
-  //   // Convertir el binario a un buffer
-  //   const buffer = Buffer.from(excelBinary, "binary");
+    // Convertir el binario a un buffer
+    const buffer = Buffer.from(excelBinary, "binary");
 
-  //   // Convertir el buffer a una cadena base64
-  //   const excelBase64 = buffer.toString("base64");
+    // Convertir el buffer a una cadena base64
+    const excelBase64 = buffer.toString("base64");
 
-  //   // Guardar el archivo en el sistema de archivos
-  //   const filePath = FileSystem.documentDirectory + "data.xlsx";
-  //   await FileSystem.writeAsStringAsync(filePath, excelBase64, {
-  //     encoding: FileSystem.EncodingType.Base64,
-  //   });
+    // Guardar el archivo en el sistema de archivos
+    const filePath = FileSystem.documentDirectory + "data.xlsx";
+    console.log("filePath: ",FileSystem);
+    
 
+    await FileSystem.writeAsStringAsync(filePath, excelBase64, {
+      encoding: FileSystem.EncodingType.Base64,
+    });
+console.log("Sharing: ",Sharing.shareAsync);
+//! revisar el node_module/expo-sharing/tsconfig.json
     // Compartir el archivo
     await Sharing.shareAsync(filePath);
+
+  }
+  catch (error) {
+    console.error("Error al importar el archivo:", error);
+    Alert.alert("Error", "No se pudo leer el archivo. Asegúrate de que esté disponible localmente.");
+  }
+
+  
   };

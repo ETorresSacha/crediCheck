@@ -20,7 +20,7 @@ const PieChart = ({ data, colors, size = 200, transparency = 1.0 }) => {
   const resultIndexColor = data.findIndex(resultColor);
 
   return (
-    <View>
+    <View style={{ justifyContent: "center" }}>
       {numDatos.length == 1 || numDatos.length == 0 ? (
         <Svg height={2 * radius + 10} width={2 * radius + 10}>
           {/* Cuando existe solo un dato */}

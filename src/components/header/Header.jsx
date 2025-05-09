@@ -69,7 +69,7 @@ export default Header;
 const styles = StyleSheet.create({
   conteiner: {
     flexDirection: "row",
-    paddingVertical: 10,
+    //paddingVertical: 10,
   },
   rightConteiner: {
     flex: 1,

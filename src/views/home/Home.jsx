@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     resizeMode: "cover", // o 'contain' según tu preferencia
+    paddingTop: 30,
     padding: 12,
   },
   container: {

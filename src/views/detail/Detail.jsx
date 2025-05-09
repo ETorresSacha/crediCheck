@@ -46,7 +46,6 @@ const Detail = (props) => {
       console.error(error);
     }
   };
-  console.log("updatePrestamo: ", updatePrestamo);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -250,6 +249,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#181b21",
     verticalAlign: "middle",
+    paddingTop: 30,
   },
 
   containerData: {

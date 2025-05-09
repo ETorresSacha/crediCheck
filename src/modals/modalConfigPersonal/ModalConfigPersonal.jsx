@@ -133,8 +133,8 @@ const styles = StyleSheet.create({
     backgroundColor: "beige",
     borderRadius: 2,
     position: "absolute",
-    top: "1%",
-    right: "1%",
+    top: "1.5%",
+    right: "5%",
   },
   text: {
     fontSize: 17,

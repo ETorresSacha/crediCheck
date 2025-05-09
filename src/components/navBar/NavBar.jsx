@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Entypo from "@expo/vector-icons/Entypo";
+import { RFPercentage } from "react-native-responsive-fontsize";
 
 const NavBar = ({ data, setData, enable, dataConfiguration }) => {
   const navigation = useNavigation();
@@ -28,14 +29,14 @@ const NavBar = ({ data, setData, enable, dataConfiguration }) => {
 
     // DNI
     if (busqueda / busqueda === 1) {
-      let resulSearch = data?.dataResultCopy.filter((element) =>
+      let resulSearch = data?.dataResultCopy?.filter((element) =>
         element.dni.includes(text)
       );
       setData({ ...data, dataResult: resulSearch });
     }
     // NOMBRE
     else {
-      let resulSearch = data?.dataResultCopy.filter((element) =>
+      let resulSearch = data?.dataResultCopy?.filter((element) =>
         element.nombre.includes(text)
       );
       setData({ ...data, dataResult: resulSearch });
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
     backgroundColor: "beige",
     paddingHorizontal: 8,
     height: 45,
-    width: 240,
+    width: RFPercentage(35),
     borderTopLeftRadius: 15,
     borderBottomLeftRadius: 15,
     borderTopWidth: 2,
@@ -126,11 +127,12 @@ const styles = StyleSheet.create({
   },
   icon: {
     backgroundColor: "beige",
-    borderTopWidth: 2,
-    borderBottomWidth: 2,
-    borderRightWidth: 2,
+    // borderTopWidth: 1,
+    borderWidth: 2,
+    // borderBottomWidth: 2,
+    //borderRightWidth: 2,
     height: 45,
-    width: 40,
+    width: 35,
     alignItems: "center",
     justifyContent: "center",
     borderBottomRightRadius: 15,
