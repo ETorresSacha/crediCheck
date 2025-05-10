@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   Alert,
+  ScrollView,
 } from "react-native";
 import equal from "deep-equal";
 import React from "react";
@@ -64,98 +65,99 @@ const Configuration = ({
     }
   };
   return (
-    <Modal
-      style={styles.container}
-      transparent={true}
-      visible={enablerConf}
-      onRequestClose={() => setEnableConf(false)}
-    >
-      <TouchableWithoutFeedback onPress={() => onPressConfig()}>
-        <View style={styles.modalOverlay} />
-      </TouchableWithoutFeedback>
-      <View style={styles.modalContent}>
-        <View style={{ paddingBottom: 10 }}>
-          <Text
-            style={{
-              color: "black",
-              textAlign: "center",
-              fontSize: 20,
-              fontWeight: "bold",
+    <ScrollView style={styles.container}>
+      <Modal
+        transparent={true}
+        visible={enablerConf}
+        onRequestClose={() => setEnableConf(false)}
+      >
+        <TouchableWithoutFeedback onPress={() => onPressConfig()}>
+          <View style={styles.modalOverlay} />
+        </TouchableWithoutFeedback>
+        <View style={styles.modalContent}>
+          <View style={{ paddingBottom: 10 }}>
+            <Text
+              style={{
+                color: "black",
+                textAlign: "center",
+                fontSize: 20,
+                fontWeight: "bold",
+              }}
+            >
+              INTERÉS MORATORIO
+            </Text>
+          </View>
+
+          {/* Tasa Prima Mensual */}
+          {/* <View style={styles.containerInput}>
+        <Text>Tasa Prima Mensual</Text>
+        <View style={styles.inputView}>
+          <TextInput
+            value={dataConfiguration.tpm}
+            style={styles.input}
+            placeholderTextColor="gray"
+            onChangeText={(text) => {
+              setDataConfiguration({ ...dataConfiguration, tpm: text });
             }}
-          >
-            INTERÉS MORATORIO
-          </Text>
+            keyboardType="numeric"
+          />
+          <Text style={{ fontSize: 20 }}>%</Text>
         </View>
+      </View> */}
 
-        {/* Tasa Prima Mensual */}
-        {/* <View style={styles.containerInput}>
-          <Text>Tasa Prima Mensual</Text>
-          <View style={styles.inputView}>
-            <TextInput
-              value={dataConfiguration.tpm}
-              style={styles.input}
-              placeholderTextColor="gray"
-              onChangeText={(text) => {
-                setDataConfiguration({ ...dataConfiguration, tpm: text });
-              }}
-              keyboardType="numeric"
-            />
-            <Text style={{ fontSize: 20 }}>%</Text>
-          </View>
-        </View> */}
-
-        {/* Comisión de Cobranza Variable */}
-        {/* <View style={styles.containerInput}>
-          <Text>Comisión de Cobranza Variable</Text>
-          <View style={styles.inputView}>
-            <TextInput
-              value={dataConfiguration.ccv}
-              style={styles.input}
-              placeholderTextColor="gray"
-              onChangeText={(text) => {
-                setDataConfiguration({ ...dataConfiguration, ccv: text });
-              }}
-              keyboardType="numeric"
-            />
-            <Text style={{ fontSize: 20 }}>%</Text>
-          </View>
-        </View> */}
-
-        {/* Interés Moratorio */}
-        <View style={{ paddingTop: 10 }}>
-          <Text style={{ color: "gray" }}>
-            Aplicable solo cuando existe mora
-          </Text>
+          {/* Comisión de Cobranza Variable */}
+          {/* <View style={styles.containerInput}>
+        <Text>Comisión de Cobranza Variable</Text>
+        <View style={styles.inputView}>
+          <TextInput
+            value={dataConfiguration.ccv}
+            style={styles.input}
+            placeholderTextColor="gray"
+            onChangeText={(text) => {
+              setDataConfiguration({ ...dataConfiguration, ccv: text });
+            }}
+            keyboardType="numeric"
+          />
+          <Text style={{ fontSize: 20 }}>%</Text>
         </View>
-        <View style={styles.containerInput}>
-          <Text>Interés Moratorio</Text>
-          <View style={styles.inputView}>
-            <TextInput
-              value={dataConfiguration?.intMoratorio}
-              style={styles.input}
-              placeholderTextColor="gray"
-              onChangeText={(text) => {
-                setDataConfiguration({
-                  ...dataConfiguration,
-                  intMoratorio: text,
-                });
-              }}
-              keyboardType="numeric"
-            />
-            <Text style={{ fontSize: 20 }}>%</Text>
+      </View> */}
+
+          {/* Interés Moratorio */}
+          <View style={{ paddingTop: 10 }}>
+            <Text style={{ color: "gray" }}>
+              Aplicable solo cuando existe mora
+            </Text>
+          </View>
+          <View style={styles.containerInput}>
+            <Text>Interés Moratorio</Text>
+            <View style={styles.inputView}>
+              <TextInput
+                value={dataConfiguration?.intMoratorio}
+                style={styles.input}
+                placeholderTextColor="gray"
+                onChangeText={(text) => {
+                  setDataConfiguration({
+                    ...dataConfiguration,
+                    intMoratorio: text,
+                  });
+                }}
+                keyboardType="numeric"
+              />
+              <Text style={{ fontSize: 20 }}>%</Text>
+            </View>
+          </View>
+
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.btnCalcular}
+              onPress={() => handleKeep(dataConfiguration)}
+            >
+              <Text style={styles.textBtn}>Guardar</Text>
+            </TouchableOpacity>
           </View>
         </View>
-
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.btnCalcular}
-            onPress={() => handleKeep(dataConfiguration)}
-          >
-            <Text style={styles.textBtn}>Guardar</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </Modal>
+      </Modal>
+    </ScrollView>
   );
 };
 
@@ -178,7 +180,7 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: "beige",
-    borderRadius: 2,
+    // borderRadius: 2,
     position: "absolute",
     top: "15%",
     left: "10%",

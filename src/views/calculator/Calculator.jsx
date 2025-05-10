@@ -52,7 +52,6 @@ const Calculator = ({
     fechaDesembolso: !dataPerson ? "" : dataPerson.fechaDesembolso,
     fechaPrimeraCuota: !dataPerson ? "" : dataPerson.fechaPrimeraCuota,
   });
-  console.log("dataPerson: ", dataPerson);
 
   // Todo--> COMPONENTE NEWFORM
   useFocusEffect(
@@ -192,7 +191,6 @@ const Calculator = ({
       setEnabled(true);
     }
   };
-  console.log("enable: ", enabled);
 
   return (
     <ImageBackground

@@ -75,7 +75,6 @@ const ModalCancelPay = ({
 
   return (
     <Modal
-      //style={styles.container}
       transparent={true}
       visible={isVisible}
       onRequestClose={() => setIsVisible(false)}
@@ -128,7 +127,7 @@ const ModalCancelPay = ({
               return Object.entries(objeto).map(([llave, valor]) => {
                 return (
                   <View
-                    style={[styles.item, { width: RFPercentage(28) }]}
+                    style={[styles.item, { width: RFPercentage(32) }]}
                     key={index}
                   >
                     <Text style={styles.itemTitleDetalle}>{llave} </Text>
@@ -148,7 +147,9 @@ const ModalCancelPay = ({
               });
             })}
             {/* monto a cancelar */}
-            <View style={[styles.item, { width: RFPercentage(28) }]}>
+            <View
+              style={[styles.item, { width: RFPercentage(32), paddingTop: 10 }]}
+            >
               <Text style={[styles.itemTitleDetalle, { color: "orange" }]}>
                 Monto a cancelar
               </Text>
@@ -197,33 +198,22 @@ export default ModalCancelPay;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // position: "absolute",
-    // //top: "1",
-    // left: "7%",
-    // right: "7%",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   modalOverlay: {
     flex: 1,
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   modalContent: {
-    // flex: 1,
-    // flexDirection: "column",
-    // alignItems: "stretch",
     backgroundColor: "rgba(6, 18, 20, 0.836)",
-    borderColor: "white",
-    // width: RFPercentage(40),
-    // height: RFPercentage(40),
+    borderRadius: 15,
     position: "absolute",
     top: "30%",
     left: "7%",
     right: "7%",
-    //justifyContent: "center",
-    borderRadius: 15,
+    borderColor: "white",
     borderWidth: 1,
-    // padding: 10,
-    //paddingVertical: 10,
-    // paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   graficoContainer: {
     //flex: 1,
@@ -243,7 +233,6 @@ const styles = StyleSheet.create({
   },
   itemTitleDetalle: {
     color: "cornsilk",
-    width: RFPercentage(16),
     fontWeight: "bold",
   },
   itemText: {

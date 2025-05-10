@@ -23,7 +23,6 @@ const ModalLeyenda = ({ isVisible, setIsVisible, clientes, day }) => {
 
   return (
     <Modal
-      style={styles.container}
       transparent={true}
       visible={isVisible}
       onRequestClose={() => setIsVisible(false)}

@@ -177,7 +177,6 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: "beige",
-    borderRadius: 2,
     position: "absolute",
     top: "15%",
     left: "10%",
@@ -223,11 +222,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     letterSpacing: 0.25,
     color: "white",
-  },
-  containerConfiguration: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
   },
 });

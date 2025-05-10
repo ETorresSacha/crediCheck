@@ -9,7 +9,7 @@ const ItemsHome = ({ dataConfiguration }) => {
   const navigation = useNavigation();
 
   const handleOnPress = (value, data) => {
-    navigation.navigate(value, { data: data ? data : null });
+    navigation.navigate(value, data);
   };
   return (
     <View style={styles.container}>

@@ -127,10 +127,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     backgroundColor: "beige",
-    // borderTopWidth: 1,
     borderWidth: 2,
-    // borderBottomWidth: 2,
-    //borderRightWidth: 2,
     height: 45,
     width: 35,
     alignItems: "center",

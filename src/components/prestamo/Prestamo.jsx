@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   dropdown: {
-    height: 27,
+    height: 32,
     width: RFPercentage(20),
     backgroundColor: "white",
     borderRadius: 12,

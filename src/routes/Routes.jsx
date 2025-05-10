@@ -36,11 +36,12 @@ const Routes = () => {
           component={Customer}
           options={{ optionsStack, statusBarColor: "black" }}
         />
-        <Stack.Screen
+        {/* [ OJOOOOOO :::: VERIFICAR SI SERA UTIL, si vamos a eliminar tambien eliminaresmos las librerias o la carpeta] */}
+        {/* <Stack.Screen
           name="Clientes cancelados"
           component={CanceledCustomer}
           options={{ optionsStack, statusBarColor: "black" }}
-        />
+        /> */}
         <Stack.Screen
           name="Calculadora"
           component={Calculator}

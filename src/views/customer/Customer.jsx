@@ -13,7 +13,7 @@ import Loading from "../../components/loading/Loading";
 import { format } from "date-fns";
 
 const Customer = (props) => {
-  let enable = props?.route?.params?.data?.enable; // Habilita el componente de los clientes cancelados
+  let enable = props?.route?.params?.enable; // Habilita el componente de los clientes cancelados
 
   const { onGetCronograma } = UseStorage();
   const { onGetConfiguration } = UseStorageConfiguration();

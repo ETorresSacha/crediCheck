@@ -4,42 +4,44 @@ import {
   View,
   Modal,
   TouchableWithoutFeedback,
+  ScrollView,
 } from "react-native";
 import React from "react";
 
 const AcercaApp = ({ app, setApp }) => {
   return (
-    <Modal
-      style={styles.container}
-      transparent={true}
-      visible={app}
-      onRequestClose={() => setApp(false)}
-    >
-      <TouchableWithoutFeedback onPress={() => setApp(false)}>
-        <View style={styles.modalOverlay} />
-      </TouchableWithoutFeedback>
-      <View style={styles.modalContent}>
-        <Text
-          style={{
-            color: "black",
-            textAlign: "center",
-            fontSize: 20,
-            fontWeight: "bold",
-          }}
-        >
-          ACERCA DE LA APP
-        </Text>
-        <Text style={{ paddingBottom: 10 }}>
-          Esta app te ayuda a llevar una buena administración de tus clientes,
-          recordar los cobros pendientes entre otros.
-        </Text>
+    <ScrollView style={styles.container}>
+      <Modal
+        transparent={true}
+        visible={app}
+        onRequestClose={() => setApp(false)}
+      >
+        <TouchableWithoutFeedback onPress={() => setApp(false)}>
+          <View style={styles.modalOverlay} />
+        </TouchableWithoutFeedback>
+        <View style={styles.modalContent}>
+          <Text
+            style={{
+              color: "black",
+              textAlign: "center",
+              fontSize: 20,
+              fontWeight: "bold",
+            }}
+          >
+            ACERCA DE LA APP
+          </Text>
+          <Text style={{ paddingBottom: 10 }}>
+            Esta app te ayuda a llevar una buena administración de tus clientes,
+            recordar los cobros pendientes entre otros.
+          </Text>
 
-        <Text>Nombre: App Evaluar</Text>
-        <Text>Versión: 1.0.0</Text>
-        <Text>Creador: devtorres</Text>
-        <Text>Contacto:devtorresk31@gmail.com</Text>
-      </View>
-    </Modal>
+          <Text>Nombre: App Evaluar</Text>
+          <Text>Versión: 1.0.0</Text>
+          <Text>Creador: devtorres</Text>
+          <Text>Contacto:devtorresk31@gmail.com</Text>
+        </View>
+      </Modal>
+    </ScrollView>
   );
 };
 

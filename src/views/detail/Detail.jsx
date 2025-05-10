@@ -114,19 +114,17 @@ const Detail = (props) => {
       dataConfiguration: valueProps?.dataConfiguration,
     });
   };
+  console.log("valueProps?.enable: ", valueProps?.enable);
 
   // Eliminar
   const handleDelete = async (data) => {
     try {
-      await onDeleteCustomer(data);
-      navigation.navigate(
-        !valueProps?.enable ? "Clientes" : "Clientes cancelados"
-      );
+      // await onDeleteCustomer(data);
+      navigation.navigate("Clientes", { enable: valueProps?.enable });
     } catch (error) {
       console.error();
     }
   };
-
   const alertDelete = (data) => {
     Alert.alert("Eliminar", "¿Desea continuar?", [
       {

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import Customer from "../customer/Customer";
 
 const CanceledCustomer = (props) => {
+  console.log("props: ", props?.route);
+
   const [enable, setEnable] = useState(true); //  Habilita el componente de los clientes cancelados
   //! ESTE COMPONENTE NO SE ESTA USANDO , VAMOS A EVALUAR PARA ELIMINARLO AL FINAL DEL PROYECTO, CLARO SI NO ES UTIL
 
@@ -12,7 +14,7 @@ const CanceledCustomer = (props) => {
 
   return (
     <View style={styles.container}>
-      <Customer props={props} />{" "}
+      <Customer props={props} />
     </View>
   );
 };
