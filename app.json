@@ -21,7 +21,9 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "permissions": ["READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"]
+      "permissions": [],
+      "blockedPermissions": ["android.permission.READ_EXTERNAL_STORAGE"],
+      "package": "com.erikk31.crediCheck"
     },
     "web": {
       "favicon": "./assets/favicon.png"

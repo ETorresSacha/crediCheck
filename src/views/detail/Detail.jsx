@@ -114,12 +114,11 @@ const Detail = (props) => {
       dataConfiguration: valueProps?.dataConfiguration,
     });
   };
-  console.log("valueProps?.enable: ", valueProps?.enable);
 
   // Eliminar
   const handleDelete = async (data) => {
     try {
-      // await onDeleteCustomer(data);
+      await onDeleteCustomer(data);
       navigation.navigate("Clientes", { enable: valueProps?.enable });
     } catch (error) {
       console.error();

@@ -1,3 +1,4 @@
+//! VERIFICAR SI ESTE COMPONENTE ES UTIL O NO
 // import * as TaskManager from "expo-task-manager";
 // import * as BackgroundFetch from "expo-background-fetch";
 // import * as Notifications from "expo-notifications";

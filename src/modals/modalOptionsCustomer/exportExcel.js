@@ -11,33 +11,30 @@ export const createExcel = async (dataConfiguration) => {
   try {
     // Traemos todos los datos guardados en el storage
   let resultCustomer = await onGetCronograma();
-
+  
   // Ánalisis de la mora por cada cliente
-  // // resultCustomer = resultCustomer?.map(element=>{
-  // //   let newResult = element?.resultPrestamo.map(ele=>{
-  // //     let objeto = {...ele, mora:ele?.statusPay ? ele?.mora :calculoMoraSimple(ele,dataConfiguration)}  
-  // //     return objeto
-  // //   })
+  resultCustomer = resultCustomer?.map(element=>{
+    let newResult = element?.resultPrestamo.map(ele=>{
+      let objeto = {...ele, mora:ele?.statusPay ? ele?.mora :calculoMoraSimple(ele,dataConfiguration)}  
+      return objeto
+    })
     
-  // //    newResult = {...element,resultPrestamo:newResult}
+     newResult = {...element,resultPrestamo:newResult}
     
-  // //   return newResult
+    return newResult
     
-  // // })
- // console.log("resultCustomer:",resultCustomer[0]);
- //console.log("resultCustomer: ",resultCustomer);
-  
-  
+  })
+
 
   // Convertimos el resultPrestamos de cada elemento a un string
   resultCustomer.map((element)=> element.resultPrestamo=JSON.stringify(element?.resultPrestamo))
+
 
   // Convertir el array de objetos a un array de arrays
   const worksheetData = [
      Object.keys(resultCustomer[0]), // Encabezados
     ...resultCustomer.map((item) => Object.values(item)), // Filas de datos
   ];
-//console.log("worksheetData: ",worksheetData);
 
     // Crear una nueva hoja de cálculo
     const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
@@ -62,16 +59,14 @@ export const createExcel = async (dataConfiguration) => {
     const excelBase64 = buffer.toString("base64");
 
     // Guardar el archivo en el sistema de archivos
-    const filePath = FileSystem.documentDirectory + "data.xlsx";
-    console.log("filePath: ",FileSystem);
+    const filePath = FileSystem.cacheDirectory + "data.xlsx";
     
-
     await FileSystem.writeAsStringAsync(filePath, excelBase64, {
       encoding: FileSystem.EncodingType.Base64,
     });
-console.log("Sharing: ",Sharing.shareAsync);
-//! revisar el node_module/expo-sharing/tsconfig.json
+
     // Compartir el archivo
+    
     await Sharing.shareAsync(filePath);
 
   }
@@ -82,3 +77,4 @@ console.log("Sharing: ",Sharing.shareAsync);
 
   
   };
+
