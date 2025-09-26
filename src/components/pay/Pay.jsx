@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import UseStorage from "../hooks/UseHookStorage";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
+import { FontAwesome, MaterialIcons, FontAwesome6 } from "@expo/vector-icons";
 import { formatDate } from "../../utils/thunks/Thunks";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ModalCancelPay from "./ModalCancelPay";

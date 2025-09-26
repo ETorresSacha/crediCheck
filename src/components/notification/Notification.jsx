@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View, Linking } from "react-native";
 import React, { useEffect, useState } from "react";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Feather from "react-native-vector-icons/Feather";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import {
+  FontAwesome,
+  Feather,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import { formatDate } from "../../utils/thunks/Thunks";
 import UseStorageBusiness from "../hooks/UseHookDataNeg";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";

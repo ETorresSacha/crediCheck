@@ -6,7 +6,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import React from "react";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { FontAwesome } from "@expo/vector-icons";
 import PieChart from "./PieChart";
 import { filterCustomer } from "../../utils/thunks/Thunks";
 import { RFPercentage } from "react-native-responsive-fontsize";

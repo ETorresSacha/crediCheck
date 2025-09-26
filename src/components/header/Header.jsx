@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+//import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import ModalOptionsCustomer from "../../modals/modalOptionsCustomer/ModalOptionsCustomer";
-import Entypo from "@expo/vector-icons/Entypo";
+import { Entypo } from "@expo/vector-icons/Entypo";
 
 const Header = ({ title, back, data, setValueImport, dataConfiguration }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -46,11 +46,11 @@ const Header = ({ title, back, data, setValueImport, dataConfiguration }) => {
           style={styles.optionsCustomer}
           onPress={() => setIsVisible(true)}
         >
-          <MaterialCommunityIcons
+          {/* <MaterialCommunityIcons
             name="database"
             size={40}
             color="rgb(36, 224, 221)"
-          />
+          /> */}
         </TouchableOpacity>
       ) : null}
 

@@ -9,12 +9,14 @@ import {
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import ItemsHome from "../../components/itemsHome/ItemsHome";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
+//import { SimpleLineIcons } from "react-native-vector-icons/SimpleLineIcons"; //! BUSCAR EN EL JSON Y DESINSTALAR
+import { SimpleLineIcons } from "@expo/vector-icons";
 import ModalConfigPersonal from "../../modals/modalConfigPersonal/ModalConfigPersonal";
 import UseStorageConfiguration from "../../components/hooks/UseHookConfiguration";
 import UseStorageBusiness from "../../components/hooks/UseHookDataNeg";
 import fondoHome from "../../../assets/fondoHome.jpg";
 import logoCrediCheck from "../../../assets/logoCrediCheck.png";
+
 const Home = () => {
   const { onGetBusiness } = UseStorageBusiness();
   const { onGetConfiguration } = UseStorageConfiguration();

@@ -1,13 +1,12 @@
-import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../views/home/Home";
-import Detail from "../views/detail/Detail";
-import NewForm from "../views/newForm/NewForm";
-import VerCronograma from "../views/cronograma/VerCronograma";
 import Customer from "../views/customer/Customer";
 import Calculator from "../views/calculator/Calculator";
-import CanceledCustomer from "../views/canceledCustomer/CanceledCustomer";
+import NewForm from "../views/newForm/NewForm";
+import Detail from "../views/detail/Detail";
+import VerCronograma from "../views/cronograma/VerCronograma";
+// import CanceledCustomer from "../views/canceledCustomer/CanceledCustomer";
 
 const optionsStack = {
   headerStyle: {

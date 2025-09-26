@@ -2,7 +2,7 @@ import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { datePay, montoPay } from "../../utils/thunks/Thunks";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { FontAwesome } from "@expo/vector-icons";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 const Users = ({ data, enable, dataConfiguration, day }) => {

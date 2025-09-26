@@ -2,8 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const ItemsHome = ({ dataConfiguration }) => {
   const navigation = useNavigation();
