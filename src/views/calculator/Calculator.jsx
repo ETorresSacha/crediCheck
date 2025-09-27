@@ -14,10 +14,11 @@ import { useFocusEffect } from "@react-navigation/native";
 import { validationDataPrestamo } from "../../utils/validation/Validation";
 import { cuotaIndependiente } from "../../utils/calculoCuota/CalculosCuota";
 import Cuota from "../../components/cuota/Cuota";
-import Header from "../../components/header/Header";
+
 import equal from "deep-equal";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import fondoCalculadora from "../../../assets/fondoCalculadora.jpg";
+import Header from "../../components/header/Header";
 
 const Calculator = ({
   errorsP,
