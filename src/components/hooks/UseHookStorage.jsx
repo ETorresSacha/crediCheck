@@ -69,7 +69,7 @@ const UseStorage = () => {
 
   //! GET
   const handleGetCronograma = async () => {
-    //await AsyncStorage.clear();
+    //await AsyncStorage.clear(); // sirve para limpiar todo el storage
     try {
       let result = await AsyncStorage.getItem(MY_DATA_KEY);
 

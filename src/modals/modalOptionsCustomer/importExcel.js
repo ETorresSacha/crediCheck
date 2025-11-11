@@ -1,45 +1,49 @@
-import * as DocumentPicker from 'expo-document-picker';
-import * as XLSX from 'xlsx';
 import { editImportData } from '../../views/customer/editImportData';
 import { Alert } from "react-native";
 import UseStorage from '../../components/hooks/UseHookStorage';
 import { orderData } from '../../utils/thunks/Thunks';
-
-
-import * as FileSystem from 'expo-file-system'; // Añade esto
+import Papa from 'papaparse';
+import * as DocumentPicker from 'expo-document-picker';
+import { File } from 'expo-file-system';
 
 export const importExcel = async (data, setData) => {
   const { onSaveCronograma } = UseStorage();
   try {
-const result = await DocumentPicker.getDocumentAsync({  
-  type: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],  
-  copyToCacheDirectory: true, // ¡Clave para Android!  
-  multiple: false,  
-});  
+    // Seleccionamos el archivo y copiamos al almacenamiento del equipo
+    const result = await DocumentPicker.getDocumentAsync({
+    type: "*/*",
+    copyToCacheDirectory: true,
+  })
 
-    if (result.canceled) return;
+  // Guardamos la uri
+  const fileUri = result.assets[0].uri;
 
-    const uri = result.assets[0].uri;
+  // Crear una instancia del archivo local
+  const file = new File(fileUri);
 
-    // Leer el archivo con expo-file-system (solución clave)
-    const base64 = await FileSystem.readAsStringAsync(uri, {
-      encoding: FileSystem.EncodingType.Base64,
+  // Leer su contenido como texto (por ejemplo CSV o JSON)
+  const csvContent = await file.text();
+
+  //  Convierte el CSV a JSON con PapaParse
+    const convertToJson = Papa.parse(csvContent, {
+      header: true,
+      skipEmptyLines: true,
     });
 
-    // Convertir base64 a binary string
-    const binaryStr = atob(base64);
-    const bytes = new Uint8Array(binaryStr.length);
-    for (let i = 0; i < binaryStr.length; i++) {
-      bytes[i] = binaryStr.charCodeAt(i);
-    }
+  // Parseamos los valores de resultPrestamo a un formato de JSON
+    let resultData = editImportData(convertToJson.data);
 
-    // Procesar el Excel
-    const workbook = XLSX.read(bytes.buffer, { type: 'array' });
-    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-    const json = XLSX.utils.sheet_to_json(worksheet);
+  // Cambiamos el valor de canceled de string a booleano
+    resultData.map((elem)=>{
+      elem = {...elem,
+          canceled:elem.canceled = /^true$/i.test(elem.canceled)
+                    ? true
+                    : /^false$/i.test(elem.canceled)
+                    ? false
+                    : elem.canceled}
+      })
 
-    const resultData = editImportData(json);
-
+  // Guardamos los datos en el storage
     if (resultData.error) {
       Alert.alert("Error", "Los datos no son válidos");
     } else {
@@ -50,8 +54,9 @@ const result = await DocumentPicker.getDocumentAsync({
         dataResultCopy: orderData("fecha", resultData, false),
       });
     }
+    
   } catch (error) {
     console.error('Error al importar:', error);
-    Alert.alert("Error", "No se pudo leer el archivo. ¿Está en formato .xlsx?");
+    Alert.alert("Error", "Error al leer el archivo. Asegúrese de que esté guardado en un formato CSV compatible.");
   }
 };

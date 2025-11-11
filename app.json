@@ -21,13 +21,22 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "permissions": [],
+      "permissions": ["READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"],
       "blockedPermissions": ["android.permission.READ_EXTERNAL_STORAGE"],
       "package": "com.erikk31.crediCheck"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "plugins": [
+      [
+        "expo-document-picker",
+        {
+          "appleTeamId": "c4c321b6-ea4e-4ea6-8abc-93b5b9e7bf21",
+          "iCloudContainerEnvironment": "undefined"
+        }
+      ]
+    ],
     "extra": {
       "eas": {
         "projectId": "c4c321b6-ea4e-4ea6-8abc-93b5b9e7bf21"

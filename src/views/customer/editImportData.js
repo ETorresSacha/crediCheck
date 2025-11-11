@@ -1,7 +1,7 @@
 export const editImportData =(data)=>{
   try {
     data.map(
-      (element) => (element.resultPrestamo = JSON.parse(element?.resultPrestamo))
+      (element) => (element.resultPrestamo = JSON.parse(element?.resultPrestamo.replace(/\\"/g, '"')))
     );
     return data
   } catch (error) {
