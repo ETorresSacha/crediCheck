@@ -9,11 +9,8 @@ export default function App() {
       style={{
         flex: 1,
         // paddingTop: Platform.OS === "android" ? 25 : 0,
-        
-      }}
-      
-    >
-     
+      }}  
+    > 
       <Routes />
       <StatusBar style="light" />
     </View>

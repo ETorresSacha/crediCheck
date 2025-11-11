@@ -6,7 +6,6 @@ import Calculator from "../views/calculator/Calculator";
 import NewForm from "../views/newForm/NewForm";
 import Detail from "../views/detail/Detail";
 import VerCronograma from "../views/cronograma/VerCronograma";
-// import CanceledCustomer from "../views/canceledCustomer/CanceledCustomer";
 
 const optionsStack = {
   headerStyle: {
@@ -35,12 +34,6 @@ const Routes = () => {
           component={Customer}
           options={{ optionsStack, statusBarColor: "black" }}
         />
-        {/* [ OJOOOOOO :::: VERIFICAR SI SERA UTIL, si vamos a eliminar tambien eliminaresmos las librerias o la carpeta] */}
-        {/* <Stack.Screen
-          name="Clientes cancelados"
-          component={CanceledCustomer}
-          options={{ optionsStack, statusBarColor: "black" }}
-        /> */}
         <Stack.Screen
           name="Calculadora"
           component={Calculator}

@@ -34,7 +34,7 @@ const Header = ({ title, back, data, setValueImport, dataConfiguration }) => {
         <Entypo name="reply" style={{ color: "cornsilk", fontSize: 35 }} />
       </TouchableOpacity>
 
-      {/* Title */}
+      {/* Título */}
       <View style={styles.rightConteiner}>
         <Text style={styles.subtitle}>{title}</Text>
       </View>
@@ -68,7 +68,7 @@ export default Header;
 const styles = StyleSheet.create({
   conteiner: {
     flexDirection: "row",
-    //paddingVertical: 10,
+    paddingVertical: 5,
   },
   rightConteiner: {
     flex: 1,

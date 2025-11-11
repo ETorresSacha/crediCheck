@@ -6,9 +6,7 @@ import NavBar from "../../components/navBar/NavBar";
 import { customerData, orderData } from "../../utils/thunks/Thunks";
 import Header from "../../components/header/Header";
 import RenderCustomer from "./RenderCustomer";
-//import UseStorageConfiguration from "@/src/components/hooks/UseHookConfiguration";
 import UseStorageConfiguration from "../../components/hooks/UseHookConfiguration";
-//import Loading from "@/src/components/loading/Loading";
 import Loading from "../../components/loading/Loading";
 import { format } from "date-fns";
 
@@ -96,11 +94,14 @@ const Customer = (props) => {
         <Loading />
       ) : (
         <View style={styles.container}>
+          {/* Header */}
           <Header
             title={!enable ? "Clientes" : "Clientes cancelados"}
             setValueImport={setValueImport}
             dataConfiguration={dataConfiguration}
           />
+
+          {/* Narbar */}
           <NavBar
             data={data}
             setData={setData}
@@ -108,6 +109,7 @@ const Customer = (props) => {
             dataConfiguration={dataConfiguration}
           />
 
+          {/* Renderizar los clientes */}
           <RenderCustomer
             data={data}
             setData={setData}
