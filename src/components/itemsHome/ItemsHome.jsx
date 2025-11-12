@@ -1,9 +1,8 @@
-import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
-
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 const ItemsHome = ({ dataConfiguration }) => {
   const navigation = useNavigation();
 
@@ -12,6 +11,7 @@ const ItemsHome = ({ dataConfiguration }) => {
   };
   return (
     <View style={styles.container}>
+      {/* clientes pendientes */}
       <TouchableOpacity
         onPress={() => handleOnPress("Clientes")}
         style={styles.item}
@@ -20,6 +20,7 @@ const ItemsHome = ({ dataConfiguration }) => {
         <Text style={styles.text}> Clientes Pendientes</Text>
       </TouchableOpacity>
 
+      {/* clientes cancelados */}
       <TouchableOpacity
         onPress={() => handleOnPress("Clientes", { enable: true })}
         style={styles.item}
@@ -32,6 +33,7 @@ const ItemsHome = ({ dataConfiguration }) => {
         <Text style={styles.text}> Clientes Cancelados</Text>
       </TouchableOpacity>
 
+      {/* calculadora */}
       <TouchableOpacity
         onPress={() => handleOnPress("Calculadora", dataConfiguration)}
         style={styles.item}
@@ -50,12 +52,11 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    // width: 330,
     justifyContent: "center",
     alignContent: "center",
     padding: 20,
     marginTop: "20%",
-    //marginLeft: 30,
+    paddingVertical: RFPercentage(5),
     borderRadius: 20,
     gap: 30,
   },
@@ -64,7 +65,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "cornsilk",
     textAlign: "center",
-    width: "90%",
+    width: RFPercentage(15),
+    fontSize: RFValue(17),
   },
   item: {
     justifyContent: "center",
