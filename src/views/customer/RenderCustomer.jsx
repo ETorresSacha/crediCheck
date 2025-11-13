@@ -55,6 +55,7 @@ const RenderCustomer = ({
 
   return (
     <View style={styles.container}>
+      {/* Encabezado de los datos a renderizar */}
       <View
         style={
           !enable
@@ -103,6 +104,7 @@ const RenderCustomer = ({
           </View>
         ) : null}
       </View>
+
       {/* Renderiza los datos  */}
       <ScrollView style={styles.containerCuotas}>
         {!enable ? ( //  clientes guardados
@@ -124,6 +126,8 @@ const RenderCustomer = ({
           </View>
         )}
       </ScrollView>
+
+      {/* Ícono de la cantidad de clientes */}
       <View style={[styles.piePagina]}>
         <View style={styles.iconoAllUser}>
           <Entypo

@@ -178,6 +178,7 @@ export const datePay = (data,day)=>{
     return result == undefined ? null : {fecha:formatDate(result.fechaPago),color:color};
     
 }
+
 export const montoPay = (data,dataConfiguration)=>{
   
   let result =data?.find((element) => element.statusPay == false)

@@ -24,7 +24,8 @@ const MessageNotification = ({ data, day }) => {
   let hour = date.getHours();
 
   // actualizamos los datos de dataRed y dataYellow para la notificación diaria, cumpliendo esta restricción
-  if (hour > 7) {
+  if (hour > 9) {
+    //! ESTAMOS COMPROBANDO SI LAS NOTIFICACIONES ESTAN MANDANDO CORRECTAMENTE, RED AND YELLOW
     dataRed = dataRed + dataYellow;
     dataYellow = dataGreen;
   }
@@ -63,7 +64,7 @@ const MessageNotification = ({ data, day }) => {
           },
           trigger: {
             type: Notifications.SchedulableTriggerInputTypes.DAILY,
-            hour: 7,
+            hour: 9,
             minute: 0,
             repeats: true, // Se repetirá todos los días a las 9 AM
           },

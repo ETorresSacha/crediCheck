@@ -48,6 +48,7 @@ const NavBar = ({ data, setData, enable, dataConfiguration }) => {
 
   return (
     <View style={styles.container}>
+      {/* Buscar */}
       <View style={styles.containerInput}>
         <TextInput
           style={styles.input}
@@ -68,6 +69,8 @@ const NavBar = ({ data, setData, enable, dataConfiguration }) => {
           />
         </View>
       </View>
+
+      {/* Crear un nuevo contacto */}
       {!enable ? (
         <TouchableOpacity style={styles.button} onPress={handleAddPress}>
           <Entypo name="add-user" size={25} color="white" />

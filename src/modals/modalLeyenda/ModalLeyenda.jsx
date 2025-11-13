@@ -30,7 +30,10 @@ const ModalLeyenda = ({ isVisible, setIsVisible, clientes, day }) => {
       <TouchableWithoutFeedback onPress={() => setIsVisible(false)}>
         <View style={styles.modalOverlay} />
       </TouchableWithoutFeedback>
+
+      {/* Cuadro de información */}
       <View style={styles.modalContent}>
+        {/* Título */}
         <View style={{ paddingBottom: 15, alignContent: "center" }}>
           <Text
             style={{
@@ -67,7 +70,6 @@ const ModalLeyenda = ({ isVisible, setIsVisible, clientes, day }) => {
                     fontSize: RFPercentage(2.5),
                   }}
                 />
-
                 <Text style={styles.leyenda}>{element}</Text>
                 <View style={styles.containerTitleLeyenda}>
                   <Text style={styles.titleLeyenda}>{data[index]}</Text>
