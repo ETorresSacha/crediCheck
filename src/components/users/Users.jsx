@@ -86,7 +86,7 @@ const Users = ({ data, enable, dataConfiguration, day }) => {
                   ]}
                 >
                   {enable
-                    ? element?.capital
+                    ? parseFloat(element?.capital).toFixed(2)
                     : montoPay(
                         element?.resultPrestamo,
                         dataConfiguration
