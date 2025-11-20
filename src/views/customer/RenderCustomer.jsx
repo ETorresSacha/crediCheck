@@ -13,7 +13,7 @@ import { Entypo, Fontisto } from "@expo/vector-icons";
 import { orderData } from "../../utils/thunks/Thunks";
 import { renderImportData } from "./renderImportData";
 import MessageNotification from "../notificacionExpo/MessageNotification";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { RFPercentage } from "react-native-responsive-fontsize";
 
 const RenderCustomer = ({
   data,
@@ -100,9 +100,7 @@ const RenderCustomer = ({
 
         {/* Icono de alerta */}
         {!enable ? (
-          <View style={[styles.title, { width: RFPercentage(3.2) }]}>
-            {/* <Text style={styles.texTitle}>ALERTA</Text> */}
-          </View>
+          <View style={[styles.title, { width: RFPercentage(3.2) }]}></View>
         ) : null}
       </View>
 
@@ -180,13 +178,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(36, 146, 224, 0.625)",
     marginHorizontal: 7,
-    //marginTop: 15,
     marginBottom: 5,
   },
   containerTitle: {
     borderTopStartRadius: 13,
     borderTopEndRadius: 13,
-    //paddingHorizontal: 5,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-evenly",

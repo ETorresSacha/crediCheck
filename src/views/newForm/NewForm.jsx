@@ -48,12 +48,13 @@ const NewForm = (props) => {
     celular: !user ? "" : user?.celular,
     canceled: !user ? false : user?.canceled,
     // Datos del préstamo
+    periodo: !user ? "" : user?.periodo,
     capital: !user ? "" : user?.capital,
-    cuotas: !user ? "" : user?.cuotas,
     interes: !user ? "" : user?.interes,
+    cuotas: !user ? "" : user?.cuotas,
     fechaDesembolso: !user ? "" : user?.fechaDesembolso,
     fechaPrimeraCuota: !user ? "" : user?.fechaPrimeraCuota,
-    periodo: !user ? "" : user?.periodo,
+    //interesMoratorio: !user ? "" : user?.interesMoratorio,
     resultPrestamo: !user ? [] : user?.resultPrestamo,
   });
 

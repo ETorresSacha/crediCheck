@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import UseStorage from "../hooks/UseHookStorage";
-import { FontAwesome, MaterialIcons, FontAwesome6 } from "@expo/vector-icons";
+import {
+  FontAwesome,
+  MaterialIcons,
+  FontAwesome6,
+  AntDesign,
+} from "@expo/vector-icons";
 import { formatDate } from "../../utils/thunks/Thunks";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import ModalCancelPay from "./ModalCancelPay";
+import { useNavigation } from "@react-navigation/native";
 const Pay = ({
   data,
   indice,
@@ -23,6 +29,7 @@ const Pay = ({
   const [payShare, setPayShere] = useState(); // Guardar el pago
   const [enable, setEnable] = useState(false); // Boton de cancelar pago (ON OFF)
   const [isVisible, setIsVisible] = useState(false); // Habilita el modal de cancelar la deuda
+  const navigation = useNavigation();
 
   useEffect(() => {
     // Buscamos la última cuota pagado (útil cuando la cuenta esta cancelado)
@@ -44,7 +51,7 @@ const Pay = ({
   //todo-->  Pagar la cuota
 
   // NOTA: cuando el usuario hace click sucecivo en el botón "pagar" (rápido), "countPay" ayuda a que
-  //       de manera controlada se ejecute, se forma sucesiva, sin cometer errores en el orden de pago.
+  //       de manera controlada se ejecute, de forma sucesiva, sin cometer errores en el orden de pago.
 
   let countPay = dataSee?.cuota;
 
@@ -137,13 +144,16 @@ const Pay = ({
       }
     }
   };
-  //! OJO: PODRIAMOS CONSIDERAR EN AUMENTAR LOS DIAS DE MORA, SERIA OPTIMO O VISIBLE SOLO CUANDO EXISTE LA MORA
+
   return (
     <View style={styles.container}>
       {
         <View>
+          {/* *** Encabezado *** */}
           <View style={styles.pagosTitle}>
             <Text style={styles.titleText}>PAGOS</Text>
+
+            {/* * Íconos de acción * */}
             <View
               style={{
                 display: "flex",
@@ -151,8 +161,26 @@ const Pay = ({
                 gap: 20,
               }}
             >
-              {/* ícono de cancelar la deuda */}
+              {/*Cronogrma */}
+              <TouchableOpacity
+                style={styles.cancelPago}
+                onPress={() =>
+                  navigation.navigate("Cronograma", {
+                    user: data[0],
+                    id: valueProps?.id,
+                    typeColor: valueProps?.typeColor,
+                    enable: valueProps?.enable,
+                    dataConfiguration: valueProps?.dataConfiguration,
+                  })
+                }
+              >
+                <AntDesign name="schedule" size={27} color="cornsilk" />
+                <Text style={{ fontSize: 10, color: "cornsilk" }}>
+                  Cronograma
+                </Text>
+              </TouchableOpacity>
 
+              {/*Cancelar la deuda */}
               <TouchableOpacity
                 style={styles.cancelPago}
                 onPress={() => setIsVisible(true)}
@@ -173,6 +201,7 @@ const Pay = ({
                 </Text>
               </TouchableOpacity>
 
+              {/* Modal de cancelar la deuda */}
               <ModalCancelPay
                 isVisible={isVisible}
                 setIsVisible={setIsVisible}
@@ -184,7 +213,7 @@ const Pay = ({
                 setCanceledShare={setCanceledShare}
                 setEnable={setEnable}
               />
-              {/* ícono de cancelar la cuota pagada */}
+              {/* Cancelar el pago */}
               <TouchableOpacity
                 style={styles.cancelPago}
                 onPress={HandleCancelPay}
@@ -213,6 +242,7 @@ const Pay = ({
             </View>
           </View>
 
+          {/* *** Detalle de los pagos *** */}
           <View style={styles.pagosDetalle}>
             <View
               style={{
@@ -325,14 +355,14 @@ const Pay = ({
                 </Text>
               </View>
 
-              {/* Total del interes */}
+              {/* Total del interés */}
               <View
                 style={[
                   styles.containerSubTitle,
                   { justifyContent: "space-between" },
                 ]}
               >
-                <Text style={styles.subTitle}>Total del interes</Text>
+                <Text style={styles.subTitle}>Total del interés</Text>
                 <Text style={{ color: "white", fontSize: RFValue(14) }}>
                   S/ {dataSee?.interesTotal}
                 </Text>
@@ -358,11 +388,12 @@ const Pay = ({
                   { justifyContent: "space-between" },
                 ]}
               >
-                <Text style={styles.subTitle}>Interes</Text>
+                <Text style={styles.subTitle}>Interés</Text>
                 <Text style={{ color: "white", fontSize: RFValue(14) }}>
                   {data[0]?.interes} %
                 </Text>
               </View>
+
               {/* CUOTA */}
               <View
                 style={[
@@ -375,27 +406,115 @@ const Pay = ({
                   S/ {!canceledShare ? dataSee?.cuotaNeto : "0"}
                 </Text>
               </View>
+
               {/* MORA */}
-              <View
-                style={[
-                  styles.containerSubTitle,
-                  { justifyContent: "space-between" },
-                ]}
-              >
-                <Text style={styles.subTitle}>Mora</Text>
-                <Text
-                  style={{
-                    color:
-                      !canceledShare && dataSee?.mora != 0 ? "red" : "white",
-                    fontSize: RFValue(14),
-                  }}
-                >
-                  S/{" "}
-                  {!canceledShare ? parseFloat(dataSee?.mora).toFixed(2) : "0"}
-                </Text>
-              </View>
+              {!canceledShare && dataSee?.mora != 0 ? (
+                <View>
+                  {[
+                    {
+                      name: "Mora",
+                      value: parseFloat(dataSee?.mora).toFixed(2),
+                    },
+                    {
+                      name: "Interés moratorio",
+                      value: valueProps.dataConfiguration.intMoratorio,
+                    },
+                  ].map((item, index) => {
+                    return (
+                      <View
+                        style={[
+                          styles.containerSubTitle,
+                          { justifyContent: "space-between" },
+                        ]}
+                        key={index}
+                      >
+                        <Text style={[styles.subTitle, { color: "red" }]}>
+                          {item?.name}
+                        </Text>
+                        <Text
+                          style={{
+                            color: "red",
+                            fontSize: RFValue(14),
+                          }}
+                        >
+                          {index == 0 ? "S/" : null} {item?.value}{" "}
+                          {index == 0 ? null : "%"}
+                        </Text>
+                      </View>
+                    );
+                  })}
+                  {/* Monto de la mora */}
+                  {/* <View
+                    style={[
+                      styles.containerSubTitle,
+                      { justifyContent: "space-between" },
+                    ]}
+                  >
+                    <Text style={[styles.subTitle, { color: "red" }]}>
+                      Mora
+                    </Text>
+                    <Text
+                      style={{
+                        color: "red",
+                        fontSize: RFValue(14),
+                      }}
+                    >
+                      S/{" "}
+                      {!canceledShare
+                        ? parseFloat(dataSee?.mora).toFixed(2)
+                        : "0"}
+                    </Text>
+                  </View> */}
+                  {/* Interes de moratorio */}
+                  {/* <View
+                    style={[
+                      styles.containerSubTitle,
+                      { justifyContent: "space-between" },
+                    ]}
+                  >
+                    <Text style={[styles.subTitle, { color: "red" }]}>
+                      Interes moratorio
+                    </Text>
+                    <Text
+                      style={{
+                        color: "red",
+                        fontSize: RFValue(14),
+                      }}
+                    >
+                      S/{" "}
+                      {!canceledShare
+                        ? parseFloat(dataSee?.mora).toFixed(2)
+                        : "0"}
+                    </Text>
+                  </View> */}
+                  {/* Días de mora */}
+                  {/* <View
+                    style={[
+                      styles.containerSubTitle,
+                      { justifyContent: "space-between" },
+                    ]}
+                  >
+                    <Text style={[styles.subTitle, { color: "red" }]}>
+                      Dias moratorios
+                    </Text>
+                    <Text
+                      style={{
+                        color: "red",
+                        fontSize: RFValue(14),
+                      }}
+                    >
+                      S/{" "}
+                      {!canceledShare
+                        ? parseFloat(dataSee?.mora).toFixed(2)
+                        : "0"}
+                    </Text>
+                  </View> */}
+                </View>
+              ) : null}
             </View>
           </View>
+
+          {/* *** Botón de pagar *** */}
           <View style={{ alignItems: "center" }}>
             <TouchableOpacity
               style={

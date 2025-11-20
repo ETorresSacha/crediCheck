@@ -26,8 +26,9 @@ const Customer = (props) => {
   const loadCongiguration = async () => {
     try {
       let result = await onGetConfiguration();
+
       setDataConfiguration(
-        result == undefined ? { intMoratorio: "0.00" } : result[0] // "undefined" ocurre solo cuando no se guarda el interes en el storage
+        result == undefined ? { intMoratorio: "0" } : result[0] // "undefined" ocurre solo cuando no se guarda el interes en el storage
       );
     } catch (error) {
       console.error(error);

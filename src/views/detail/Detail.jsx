@@ -154,9 +154,13 @@ const Detail = (props) => {
                   : { enable: valueProps?.enable }
               }
             />
+
+            {/* Datos del cliente */}
             <View style={styles.containerData}>
               <View style={styles.containerTitle}>
                 <Text style={styles.title}>DATOS DEL CLIENTE</Text>
+
+                {/* ***Íconos de opciones */}
                 <View style={styles.iconos}>
                   {valueProps?.enable ? null : (
                     <TouchableOpacity
@@ -174,6 +178,8 @@ const Detail = (props) => {
                   </TouchableOpacity>
                 </View>
               </View>
+
+              {/* ***Datos */}
               <View style={styles.Data}>
                 <View style={styles.item}>
                   <Text style={styles.itemTitle}>Nombres: </Text>
@@ -197,6 +203,8 @@ const Detail = (props) => {
                 </View>
               </View>
             </View>
+
+            {/* Detalles del préstamo y pagos */}
             <Pay
               data={user}
               indice={indice}
@@ -211,27 +219,13 @@ const Detail = (props) => {
               setValueProps={setValueProps}
               setUser={setUser}
             />
+
+            {/* Medios para notificaciones */}
             <Notification
               data={user}
               typeColor={valueProps?.typeColor}
               dataSee={dataSee}
             />
-            <View style={{ alignItems: "center" }}>
-              <TouchableOpacity
-                style={styles.verCronograma}
-                onPress={() =>
-                  navigation.navigate("Cronograma", {
-                    user: user[0],
-                    id: valueProps?.id,
-                    typeColor: valueProps?.typeColor,
-                    enable: valueProps?.enable,
-                    dataConfiguration: valueProps?.dataConfiguration,
-                  })
-                }
-              >
-                <Text style={styles.subTitle}> Ver conograma</Text>
-              </TouchableOpacity>
-            </View>
           </View>
         </ScrollView>
       )}

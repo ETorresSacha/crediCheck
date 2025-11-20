@@ -1,5 +1,4 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { datePay, montoPay } from "../../utils/thunks/Thunks";
 import { FontAwesome } from "@expo/vector-icons";
@@ -95,7 +94,6 @@ const Users = ({ data, enable, dataConfiguration, day }) => {
               </View>
 
               {/* Icono de la alerta */}
-
               {enable ? null : (
                 <FontAwesome
                   name="bell"
@@ -120,10 +118,6 @@ const styles = StyleSheet.create({
     display: "flex",
     height: 45,
     flexDirection: "row",
-    //justifyContent: "space-evenly",
-    //paddingHorizontal: 3,
-    //alignItems: "center",
-    //paddingVertical: 7,
   },
   touchItem: {
     display: "flex",
