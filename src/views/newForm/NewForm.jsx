@@ -54,7 +54,6 @@ const NewForm = (props) => {
     cuotas: !user ? "" : user?.cuotas,
     fechaDesembolso: !user ? "" : user?.fechaDesembolso,
     fechaPrimeraCuota: !user ? "" : user?.fechaPrimeraCuota,
-    //interesMoratorio: !user ? "" : user?.interesMoratorio,
     resultPrestamo: !user ? [] : user?.resultPrestamo,
   });
 
@@ -140,7 +139,14 @@ const NewForm = (props) => {
             : { typeColor, editValue, id, enable, dataConfiguration }
         }
       />
-      <ScrollView>
+      <ScrollView
+        style={{
+          borderColor: "rgb(198, 198, 198)",
+          display: "flex",
+          flex: 1,
+          flexDirection: "column",
+        }}
+      >
         <DataCustomer
           setErrores={setErrores}
           errores={errores}
@@ -164,20 +170,20 @@ const NewForm = (props) => {
           dataConfiguration={dataConfiguration}
           valueProps={props.route.params}
         />
-      </ScrollView>
-      <View
-        style={{
-          alignItems: "center",
-          flex: 2,
-        }}
-      >
-        <TouchableOpacity
-          style={styles.buttonContainer}
-          onPress={handleDataKeep}
+        <View
+          style={{
+            alignItems: "center",
+            marginTop: "5%",
+          }}
         >
-          <Text style={styles.text}>Guardar</Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={handleDataKeep}
+          >
+            <Text style={styles.text}>Guardar</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 };

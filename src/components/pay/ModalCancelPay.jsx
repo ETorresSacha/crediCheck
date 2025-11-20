@@ -42,7 +42,7 @@ const ModalCancelPay = ({
     { "Cuotas Pendientes": deuda?.capitalMora },
     { Mora: deuda?.mora },
     { "Capital restante": deuda?.capitalPendiente },
-    { "Interes generado": deuda?.interes },
+    { "Interés generado": deuda?.interes },
   ];
 
   const funcionPagar = async () => {

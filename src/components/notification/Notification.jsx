@@ -69,13 +69,15 @@ const Notification = ({ data, typeColor, dataSee }) => {
     if (dataSee != undefined) {
       const messagePredetermined = `Hola ${
         data[0]?.nombre?.split(" ")[0]
-      }, tienes una deuda pendiente con "${
-        dataNegocio[0]?.negocio ? dataNegocio[0]?.negocio : " La Financiera"
-      }" de ${cuota} soles y ${
+      }, queremos recordarte que tienes una deuda pendiente con "${
+        dataNegocio[0]?.negocio ? dataNegocio[0]?.negocio : "*La Financiera*"
+      }" de un monto de *${cuota} soles* y ${
         typeColor == "red" ? "venció" : "vence"
       } el día ${formatDate(dataSee?.fechaPago)}, ${
-        typeColor == "red" ? "evita que suba tu mora" : "evita la mora"
-      } y paga hoy. ¡Gracias!`;
+        typeColor == "red"
+          ? "evita que se incremente tu mora"
+          : "evita que se genere mora"
+      } y regulariza tu pago cuanto antes.\nGracias.`;
 
       typeColor !== null ? setMessage(messagePredetermined) : setMessage(``);
     }

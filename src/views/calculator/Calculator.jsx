@@ -214,54 +214,52 @@ const Calculator = ({
         ) : null}
       </View>
 
-      <ScrollView>
-        <Prestamo
-          errorsPrestamo={errorsPrestamo}
-          setErrorsPrestamo={setErrorsPrestamo}
-          prestamo={prestamo}
-          setPrestamo={setPrestamo}
-          valuePrest={valuePrest}
-          cleanCalculator={cleanCalculator}
-          clean={clean}
-        />
-        <View>
-          {/* ------------------ CALCULAR ------------------*/}
-          {dataPerson !== undefined ? null : (
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.btnCalcular}
-                onPress={() => handleCalcular(prestamo)}
-              >
-                <Text style={styles.text}>Calcular</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-          {/* ------------------ RESULTADO ------------------*/}
-          {dataPerson !== undefined ? (
-            dataPerson ? (
-              enabled ? (
-                <Cuota
-                  cuota={cuota}
-                  changeValue={changeValue}
-                  dataPerson={dataPerson}
-                  editValue={valueProps?.editValue}
-                  user={dataPerson}
-                  id={valueProps?.id}
-                  typeColor={valueProps?.typeColor}
-                  enable={valueProps?.enable}
-                  dataConfiguration={dataConfiguration}
-                />
-              ) : null
+      <Prestamo
+        errorsPrestamo={errorsPrestamo}
+        setErrorsPrestamo={setErrorsPrestamo}
+        prestamo={prestamo}
+        setPrestamo={setPrestamo}
+        valuePrest={valuePrest}
+        cleanCalculator={cleanCalculator}
+        clean={clean}
+      />
+      <View>
+        {/* ------------------ CALCULAR ------------------*/}
+        {dataPerson !== undefined ? null : (
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.btnCalcular}
+              onPress={() => handleCalcular(prestamo)}
+            >
+              <Text style={styles.text}>Calcular</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+        {/* ------------------ RESULTADO ------------------*/}
+        {dataPerson !== undefined ? (
+          dataPerson ? (
+            enabled ? (
+              <Cuota
+                cuota={cuota}
+                changeValue={changeValue}
+                dataPerson={dataPerson}
+                editValue={valueProps?.editValue}
+                user={dataPerson}
+                id={valueProps?.id}
+                typeColor={valueProps?.typeColor}
+                enable={valueProps?.enable}
+                dataConfiguration={dataConfiguration}
+              />
             ) : null
-          ) : enabled ? (
-            <DetailCalculator
-              resultCuota={resultCuota}
-              periodo={prestamo.periodo}
-              prestamo={prestamo}
-            />
-          ) : null}
-        </View>
-      </ScrollView>
+          ) : null
+        ) : enabled ? (
+          <DetailCalculator
+            resultCuota={resultCuota}
+            periodo={prestamo.periodo}
+            prestamo={prestamo}
+          />
+        ) : null}
+      </View>
     </ImageBackground>
   );
 };
@@ -269,9 +267,7 @@ const Calculator = ({
 export default Calculator;
 const styles = StyleSheet.create({
   container: {
-    flex: 3,
     resizeMode: "cover", // o 'contain' según tu preferencia
-    paddingTop: 25,
   },
   titleEvaluar: {
     display: "flex",

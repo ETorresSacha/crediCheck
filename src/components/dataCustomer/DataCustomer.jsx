@@ -223,7 +223,8 @@ export default DataCustomer;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    display: "flex",
+    flexDirection: "column",
     paddingBottom: 15,
   },
   titleDatos: {
@@ -243,7 +244,6 @@ const styles = StyleSheet.create({
   containerInput: {
     paddingTop: 10,
     display: "flex",
-    flex: 1,
     paddingHorizontal: 5,
     flexDirection: "row",
     flexWrap: "wrap",

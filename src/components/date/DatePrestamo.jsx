@@ -92,7 +92,6 @@ export default DatePrestamo;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     display: "flex",
     gap: 15,
     paddingTop: RFPercentage(1),
