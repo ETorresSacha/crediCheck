@@ -13,6 +13,8 @@ import { Entypo, Fontisto } from "@expo/vector-icons";
 import { orderData } from "../../utils/thunks/Thunks";
 import { renderImportData } from "./renderImportData";
 import MessageNotification from "../notificacionExpo/MessageNotification";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+
 const RenderCustomer = ({
   data,
   setData,
@@ -56,74 +58,69 @@ const RenderCustomer = ({
   return (
     <View style={styles.container}>
       {/* Encabezado de los datos a renderizar */}
-      <View
-        style={
-          !enable
-            ? [styles.containerTitle]
-            : [styles.containerTitle, { justifyContent: "space-around" }]
-        }
-      >
+      <View style={!enable ? [styles.containerTitle] : [styles.containerTitle]}>
+        {/* DNI */}
         <TouchableOpacity
-          style={
-            !enable
-              ? [styles.title, { width: 50 }]
-              : [styles.title, { width: 80 }]
-          }
+          style={[styles.title, { width: RFPercentage(8.5) }]}
           onPress={() => handleSort("dni", order, enable)}
         >
-          <Text style={styles.texTitle}>DNI</Text>
+          <Text style={[styles.texTitle]}>DNI</Text>
         </TouchableOpacity>
 
+        {/* Nombre */}
         <TouchableOpacity
-          style={[styles.title, { paddingLeft: 10, width: 90 }]}
+          style={[
+            styles.title,
+            { width: RFPercentage(10), alignItems: "flex-start" },
+          ]}
           onPress={() => handleSort("nombre", order)}
         >
-          <Text style={styles.texTitle}>NOMBRE</Text>
+          <Text style={[styles.texTitle]}>NOMBRE</Text>
         </TouchableOpacity>
+
+        {/* Fecha de pago */}
         {!enable ? (
           <TouchableOpacity
-            style={[styles.title, { width: 80 }]}
+            style={[styles.title, { width: RFPercentage(10) }]}
             onPress={() => handleSort("fecha", order)}
           >
             <Text style={styles.texTitle}>FECHA DE PAGO</Text>
           </TouchableOpacity>
         ) : null}
 
+        {/* Monto de la cuota o del préstamo */}
         <TouchableOpacity
-          style={[styles.title]}
+          style={[styles.title, { width: RFPercentage(8.5) }]}
           onPress={() => handleSort("cuota", order)}
         >
-          <Text style={[styles.texTitle, { width: enable ? 100 : null }]}>
-            {!enable ? "CUOTA" : "MONTO DEL PRÉSTAMO"}
+          <Text style={[styles.texTitle, { textAlign: "center" }]}>
+            {!enable ? "CUOTA" : "CRÉDITO"}
           </Text>
         </TouchableOpacity>
 
+        {/* Icono de alerta */}
         {!enable ? (
-          <View style={[styles.title, {}]}>
-            <Text style={styles.texTitle}>ALERTA</Text>
+          <View style={[styles.title, { width: RFPercentage(3.2) }]}>
+            {/* <Text style={styles.texTitle}>ALERTA</Text> */}
           </View>
         ) : null}
       </View>
 
       {/* Renderiza los datos  */}
       <ScrollView style={styles.containerCuotas}>
-        {!enable ? ( //  clientes guardados
-          <View>
-            <Users
-              data={dataCustomer?.dataResult}
-              dataConfiguration={dataConfiguration}
-              day={day}
-            />
-          </View>
+        {!enable ? ( //  clientes
+          <Users
+            data={dataCustomer?.dataResult}
+            dataConfiguration={dataConfiguration}
+            day={day}
+          />
         ) : (
-          // Cuando no existe ningun cliente guardado
-          <View>
-            <Users
-              data={dataCustomer?.customerCanceled}
-              dataConfiguration={dataConfiguration}
-              enable={enable}
-            />
-          </View>
+          // Clientes cancelados
+          <Users
+            data={dataCustomer?.customerCanceled}
+            dataConfiguration={dataConfiguration}
+            enable={enable}
+          />
         )}
       </ScrollView>
 
@@ -189,10 +186,10 @@ const styles = StyleSheet.create({
   containerTitle: {
     borderTopStartRadius: 13,
     borderTopEndRadius: 13,
-    paddingHorizontal: 5,
+    //paddingHorizontal: 5,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     backgroundColor: "rgba(36, 146, 224, 0.625)",
     height: 50,
   },

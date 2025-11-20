@@ -52,38 +52,26 @@ const Users = ({ data, enable, dataConfiguration, day }) => {
               }
             >
               {/* DNI */}
-              <View style={{}}>
+              <View style={{ width: RFPercentage(8.5) }}>
                 <Text style={styles.text}>{element?.dni}</Text>
               </View>
 
               {/* Nombre */}
-              <View
-                style={{
-                  width: RFPercentage(11.5),
-                }}
-              >
-                <Text
-                  style={[
-                    styles.text,
-                    {
-                      fontSize:
-                        element?.nombre?.split(" ")[0].length > 10
-                          ? RFValue(10.5)
-                          : RFValue(12),
-                    },
-                  ]}
-                >{`${element?.nombre?.split(" ")[0]}`}</Text>
+              <View style={{ width: RFPercentage(10) }}>
+                <Text style={[styles.text, { fontSize: RFValue(11) }]}>{`${
+                  element?.nombre?.split(" ")[0]
+                }`}</Text>
               </View>
 
               {/* Fecha */}
               {enable ? null : (
-                <View style={{}}>
+                <View style={{ width: RFPercentage(10) }}>
                   <Text style={styles.text}>{datePay(element, day).fecha}</Text>
                 </View>
               )}
 
               {/* Monto */}
-              <View style={{ alignItems: "center" }}>
+              <View style={{ alignItems: "center", width: RFPercentage(8.5) }}>
                 <Text
                   style={[
                     styles.text,
@@ -94,7 +82,6 @@ const Users = ({ data, enable, dataConfiguration, day }) => {
                         element?.resultPrestamo[0]?.cuotaNeto.length > 8
                           ? RFValue(10.5)
                           : RFValue(12),
-                      width: RFPercentage(8.5),
                     },
                   ]}
                 >
@@ -131,23 +118,22 @@ export default Users;
 const styles = StyleSheet.create({
   dataItem: {
     display: "flex",
-    height: 50,
+    height: 45,
     flexDirection: "row",
-    justifyContent: "space-evenly",
-    paddingHorizontal: 5,
-    alignItems: "center",
-    paddingVertical: 7,
+    //justifyContent: "space-evenly",
+    //paddingHorizontal: 3,
+    //alignItems: "center",
+    //paddingVertical: 7,
   },
   touchItem: {
     display: "flex",
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     alignItems: "center",
   },
   text: {
     fontSize: RFValue(12),
-
     color: "cornsilk",
   },
   iconAlertOff: {
