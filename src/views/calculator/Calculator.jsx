@@ -196,7 +196,7 @@ const Calculator = ({
   return (
     <ImageBackground
       source={errorsP == undefined ? fondoCalculadora : null}
-      style={styles.container}
+      style={[styles.container, { paddingTop: errorsP == undefined ? 30 : 0 }]}
     >
       {errorsP == undefined ? <Header title={"Evaluar"} back={"Home"} /> : null}
       <View style={styles.titleEvaluar}>
@@ -268,6 +268,8 @@ export default Calculator;
 const styles = StyleSheet.create({
   container: {
     resizeMode: "cover", // o 'contain' según tu preferencia
+    flex: 1,
+    verticalAlign: "middle",
   },
   titleEvaluar: {
     display: "flex",

@@ -187,7 +187,11 @@ const Prestamo = ({
 export default Prestamo;
 
 const styles = StyleSheet.create({
-  container: { paddingTop: 15, gap: 10 },
+  container: {
+    //flex: 1, //
+    paddingTop: 15,
+    gap: 10,
+  },
 
   formItem: {
     flexDirection: "row",

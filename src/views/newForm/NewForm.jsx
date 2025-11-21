@@ -128,8 +128,9 @@ const NewForm = (props) => {
       }
     }
   };
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container]}>
       <Header
         title={editValue ? " Editar cliente" : "Nuevo cliente"}
         back={editValue ? "Detalle" : "Clientes"}
@@ -173,7 +174,7 @@ const NewForm = (props) => {
         <View
           style={{
             alignItems: "center",
-            marginTop: "5%",
+            marginTop: "2%",
           }}
         >
           <TouchableOpacity
