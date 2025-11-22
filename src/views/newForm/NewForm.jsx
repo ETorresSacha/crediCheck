@@ -88,7 +88,7 @@ const NewForm = (props) => {
 
     //Guardar datos
     let errorCustomer = validationDataPerson(dataPerson);
-    let valuesErrorDataCustomer = Object.values(errorCustomer); // Errores del componente DataCuatomer
+    let valuesErrorDataCustomer = Object.values(errorCustomer); // Errores del componente DataCustomer
     let valuesErrorPrestamos = Object.values(errorsP); // Errores del componente Prestamo
 
     if (valuesErrorDataCustomer.some((error) => error !== "") || !valueError) {

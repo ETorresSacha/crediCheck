@@ -75,13 +75,18 @@ const Cronograma = ({ data, dataConfiguration }) => {
                     style={[
                       styles.dataText,
                       {
+                        // condicion para el color de la cuota
                         color:
                           data?.canceled && !element?.statusPay
                             ? "gray"
-                            : `${calculoMoraSimple(
+                            : !element?.statusPay &&
+                              `${calculoMoraSimple(
                                 element,
                                 dataConfiguration
                               )}` != 0
+                            ? "red"
+                            : updatePrestamo[index]?.mora > 0 &&
+                              element?.statusPay
                             ? "red"
                             : null,
                       },

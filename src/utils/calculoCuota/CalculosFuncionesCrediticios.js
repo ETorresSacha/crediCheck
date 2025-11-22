@@ -318,11 +318,12 @@ export const cuotInterSimple =(capital,interes,tiempo,i,newCapital,cuotas)=>{
 export const calculoMoraSimple = (data, dataConfiguration)=>{
 
     let intMoratorio =parseFloat(dataConfiguration?.intMoratorio)/100  // % --> Diario
+    
     intMoratorio = intMoratorio == 0 ? 0.00000001 :intMoratorio
     let mora
     
     // Cálculo de los dias de mora
-    
+
     let toDay = format(new Date(),"yyyy-MM-dd")
      let fechaInicio = new Date(toDay).getTime()
      let fechaFin = new Date(data?.fechaPago).getTime()
@@ -330,9 +331,9 @@ export const calculoMoraSimple = (data, dataConfiguration)=>{
         diff = diff/(1000*60*60*24)
 
     // Cálculo del interes
-    if(diff > 0){ mora = (intMoratorio*data?.capital*diff)/100}
+    if(diff > 0 && !data?.statusPay){ mora = (intMoratorio*data?.capital*diff)/100}
     else{mora=data?.mora}
-     
+
      return mora
 
 }
