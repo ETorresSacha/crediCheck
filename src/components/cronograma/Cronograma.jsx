@@ -112,7 +112,7 @@ const Cronograma = ({ data, dataConfiguration }) => {
             {data?.canceled ? (
               <View style={styles.dataContainer}>
                 <Text style={[styles.tilteText, { color: "black" }]}>
-                  CUENTA CANCELADO
+                  Deuda cancelada
                 </Text>
               </View>
             ) : null}

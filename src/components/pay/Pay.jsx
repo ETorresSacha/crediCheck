@@ -381,7 +381,7 @@ const Pay = ({
                 </Text>
               </View>
 
-              {/* INTERES */}
+              {/* Interés */}
               <View
                 style={[
                   styles.containerSubTitle,
@@ -394,7 +394,7 @@ const Pay = ({
                 </Text>
               </View>
 
-              {/* CUOTA */}
+              {/* Cuota */}
               <View
                 style={[
                   styles.containerSubTitle,
@@ -407,7 +407,7 @@ const Pay = ({
                 </Text>
               </View>
 
-              {/* MORA */}
+              {/* Mora */}
               {!canceledShare && dataSee?.mora != 0 ? (
                 <View>
                   {[

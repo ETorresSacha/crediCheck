@@ -343,7 +343,7 @@ export const calculoCanlelarDeuda =(resultPrestamo ,dataConfiguration,interes)=>
     // Calculamos la mora para cada cuota
     let moraData = resultPrestamo.map(element=>{  
         let montoMora = element?.mora
-        if (!element?.statusPay){ //! EN OBSERVACION: verifica cuando la primera cuota se haya pagado dentro del plazo y la segunda este en mora, en la primera la mora debe ser 0 en la segunda si debe marcar la mora correspondiente, despues borrar este comentario
+        if (!element?.statusPay){
             montoMora = calculoMoraSimple(element,dataConfiguration)
         }
         return {...element,mora:montoMora}

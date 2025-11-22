@@ -23,7 +23,6 @@ const DatePrestamo = ({
     setShowModal(true);
     setTypeDatePrestamo(element);
   };
-  console.log(errorsPrestamo);
 
   return (
     <View style={styles.container}>
@@ -35,8 +34,8 @@ const DatePrestamo = ({
           <Text
             style={
               !errorsPrestamo.fechaDesembolso
-                ? [styles.textDate, { borderColor: "white" }]
-                : [styles.textDate, { borderColor: "red" }]
+                ? [styles.textDate, { borderBottomColor: "white" }]
+                : [styles.textDate, { borderBottomColor: "red" }]
             }
             defaultValue={prestamo?.fechaDesembolso}
           >
@@ -61,8 +60,8 @@ const DatePrestamo = ({
           <Text
             style={
               !errorsPrestamo.fechaPrimeraCuota
-                ? [styles.textDate, { borderColor: "white" }]
-                : [styles.textDate, { borderColor: "red" }]
+                ? [styles.textDate, { borderBottomColor: "white" }]
+                : [styles.textDate, { borderBottomColor: "red" }]
             }
             defaultValue={prestamo?.fechaPrimeraCuota}
           >
@@ -106,12 +105,7 @@ const styles = StyleSheet.create({
 
   inputContainerDate: {
     width: RFPercentage(20),
-  },
-  input: {
-    textAlign: "center",
-    color: "cornsilk",
-    borderBottomColor: "white",
-    borderBottomWidth: 1,
+    color: "red",
   },
   textDate: {
     textAlign: "center",
@@ -120,13 +114,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     height: 30,
     fontSize: 17,
-  },
-
-  alertError: {
-    textAlign: "center",
-    color: "cornsilk",
-    borderColor: "red",
-    borderBottomWidth: 1,
   },
   inputDateContainer: {
     backgroundColor: "rgb(68, 132, 222)",
