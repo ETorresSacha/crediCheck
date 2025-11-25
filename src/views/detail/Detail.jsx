@@ -39,6 +39,8 @@ const Detail = (props) => {
   const loadCustomerId = async (id) => {
     try {
       const resultCustomer = await onGetCronograma();
+      console.log("resultCustomer:", resultCustomer);
+
       const result = resultCustomer.filter((element) => element.uuid == id);
 
       setUser(result);

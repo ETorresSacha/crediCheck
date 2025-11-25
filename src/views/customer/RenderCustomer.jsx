@@ -42,6 +42,7 @@ const RenderCustomer = ({
     setOrder(!value);
   };
 
+  // Importar data cuando se active el valor de valueImport
   useFocusEffect(
     React.useCallback(() => {
       //Función
@@ -49,8 +50,8 @@ const RenderCustomer = ({
         valueImport,
         setValueImport,
         data,
-        setData
-        //dataCustomer?.dataResult //! este dato es importante, asi que veamos donde hacemos que funcione la funcion( esta parte verifica el funcionamiento de la funcion import)
+        setData,
+        dataCustomer?.dataResult //! este dato es importante, asi que veamos donde hacemos que funcione la funcion( esta parte verifica el funcionamiento de la funcion import)
       );
     }, [valueImport])
   );

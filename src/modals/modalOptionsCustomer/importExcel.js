@@ -6,7 +6,7 @@ import Papa from 'papaparse';
 import * as DocumentPicker from 'expo-document-picker';
 import { File } from 'expo-file-system';
 
-export const importExcel = async (data, setData) => {
+export const importExcel = async (data, setData, accion) => {
   const { onSaveCronograma } = UseStorage();
   try {
     // Seleccionamos el archivo y copiamos al almacenamiento del equipo
@@ -42,17 +42,48 @@ export const importExcel = async (data, setData) => {
                     ? false
                     : elem.canceled}
       })
-
-  // Guardamos los datos en el storage
+      
+    // Verificamos si hay error en los datos importados
     if (resultData.error) {
       Alert.alert("Error", "Los datos no son válidos");
+      
     } else {
-      await onSaveCronograma(resultData, "import");
-      setData({
-        ...data,
-        dataResult: orderData("fecha", resultData, false),
-        dataResultCopy: orderData("fecha", resultData, false),
-      });
+      // Combinamos los datos dependiendo de la acción
+      let combinedData
+
+      if(accion ==="añadir"){
+        const noRepetidos = resultData.filter(n =>!data.dataResult.some(d => d.uuid === n.uuid));
+        combinedData = [...data.dataResult,...noRepetidos];
+      }
+      else{
+        combinedData = resultData;
+      }
+
+      // Alerta de confirmación
+      Alert.alert(
+        "¡ALERTA!",
+         `Se va ${accion ? accion : "importar"} nuevos clientes. ¿Desea continuar?`,
+
+          [
+            {
+              text: "Si",
+              onPress: async () => {
+                // Guardamos los datos combinados
+                  await onSaveCronograma(combinedData, "import");
+                // Actualizamos el estado
+                  setData({...data,
+                    dataResult: orderData("fecha", combinedData, false),
+                    dataResultCopy: orderData("fecha", combinedData, false)});
+              },
+              style: "destructive",
+            },
+            {
+              text: "No",   
+              style: "destructive",
+            },
+          ]
+        )
+
     }
     
   } catch (error) {
