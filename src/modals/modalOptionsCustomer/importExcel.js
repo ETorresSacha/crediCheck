@@ -63,7 +63,6 @@ export const importExcel = async (data, setData, accion) => {
       Alert.alert(
         "¡ALERTA!",
          `Se va ${accion ? accion : "importar"} nuevos clientes. ¿Desea continuar?`,
-
           [
             {
               text: "Si",

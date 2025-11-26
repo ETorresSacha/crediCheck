@@ -15,7 +15,6 @@ import "react-native-get-random-values"; // generea valores aleatorios para que 
 import { v4 as uuidv4 } from "uuid";
 import { validationDataPerson } from "../../utils/validation/Validation";
 import Header from "../../components/header/Header";
-import { RFPercentage } from "react-native-responsive-fontsize";
 
 const NewForm = (props) => {
   const uuid = uuidv4();
@@ -55,6 +54,7 @@ const NewForm = (props) => {
     fechaDesembolso: !user ? "" : user?.fechaDesembolso,
     fechaPrimeraCuota: !user ? "" : user?.fechaPrimeraCuota,
     resultPrestamo: !user ? [] : user?.resultPrestamo,
+    interesMoratorio: null, // Se deja la variable para que mas adelante se pueda implementar el interes moratorio (validar la funcionalidad entre los componentes relacionados)
   });
 
   useEffect(() => {
@@ -76,6 +76,7 @@ const NewForm = (props) => {
         fechaPrimeraCuota: "",
         periodo: "",
         resultPrestamo: [],
+        interesMoratorio: null,
       });
     }
   }, [clean]);
