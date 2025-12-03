@@ -3,7 +3,10 @@ import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { formatDate } from "../../utils/thunks/Thunks";
 import Checkbox from "expo-checkbox";
 import Loading from "../loading/Loading";
-import { calculoMoraSimple } from "../../utils/calculoCuota/CalculosFuncionesCrediticios";
+import {
+  calculoMora,
+  calculoMoraSimple,
+} from "../../utils/calculoCuota/CalculosFuncionesCrediticios";
 
 const Cronograma = ({ data, dataConfiguration }) => {
   const [updatePrestamo, setUpdatePrestamo] = useState([]); // ResultPrestamo
@@ -80,10 +83,7 @@ const Cronograma = ({ data, dataConfiguration }) => {
                           data?.canceled && !element?.statusPay
                             ? "gray"
                             : !element?.statusPay &&
-                              `${calculoMoraSimple(
-                                element,
-                                dataConfiguration
-                              )}` != 0
+                              `${calculoMora(element, dataConfiguration)}` != 0
                             ? "red"
                             : updatePrestamo[index]?.mora > 0 &&
                               element?.statusPay
@@ -92,13 +92,13 @@ const Cronograma = ({ data, dataConfiguration }) => {
                       },
                     ]}
                   >
+                    {/* {parseFloat(element?.cuotaFinal) +
+                      (element?.statusPay
+                        ? (element?.mora)
+                        : parseFloat(calculoMora(element, dataConfiguration)))} */}
                     {(
                       parseFloat(element?.cuotaFinal) +
-                      (element?.statusPay
-                        ? element?.mora
-                        : parseFloat(
-                            calculoMoraSimple(element, dataConfiguration)
-                          ))
+                      parseFloat(calculoMora(element, dataConfiguration))
                     ).toFixed(2)}
                   </Text>
                   <Checkbox

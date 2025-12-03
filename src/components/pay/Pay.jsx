@@ -144,7 +144,6 @@ const Pay = ({
       }
     }
   };
-  console.log(data);
 
   return (
     <View style={styles.container}>

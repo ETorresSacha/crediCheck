@@ -179,8 +179,6 @@ const Calculator = ({
         ? user[0].resultPrestamo
         : sistemaFrances(data);
 
-      console.log(result);
-
       if (dataPerson != undefined) {
         setDataPerson({
           ...dataPerson,

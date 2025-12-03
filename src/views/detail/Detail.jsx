@@ -16,7 +16,7 @@ import Header from "../../components/header/Header";
 import Loading from "../../components/loading/Loading";
 import Entypo from "@expo/vector-icons/Entypo";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import { calculoMoraSimple } from "../../utils/calculoCuota/CalculosFuncionesCrediticios";
+import { calculoMora } from "../../utils/calculoCuota/CalculosFuncionesCrediticios";
 
 const Detail = (props) => {
   const { onGetCronograma, onDeleteCustomer } = UseStorage();
@@ -78,7 +78,7 @@ const Detail = (props) => {
       if (result != undefined) {
         result = {
           ...result,
-          mora: calculoMoraSimple(result, valueProps?.dataConfiguration),
+          mora: calculoMora(result, valueProps?.dataConfiguration),
         };
 
         setDataSee(result);

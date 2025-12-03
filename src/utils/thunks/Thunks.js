@@ -1,4 +1,4 @@
-import { calculoMoraSimple } from '../calculoCuota/CalculosFuncionesCrediticios';
+import { calculoMora, calculoMoraSimple } from '../calculoCuota/CalculosFuncionesCrediticios';
 import { compareAsc, format,add,formatDistance, getDate,isFuture,isEqual,differenceInDays} from 'date-fns'
 //TODO--> ORDENAR
 export const orderData = (type,data,value,enable)=>{
@@ -182,8 +182,8 @@ export const datePay = (data,day)=>{
 export const montoPay = (data,dataConfiguration)=>{
   
   let result =data?.find((element) => element.statusPay == false)
-  return parseFloat(result?.cuotaFinal) +  parseFloat(calculoMoraSimple(result,dataConfiguration))
-
+  
+return parseFloat(result?.cuotaFinal) +  parseFloat(calculoMora(result,dataConfiguration))
 }
 
 //TODO--> FILTRAR LOS CLIENTES DE ACUERDO A SU ESTADO DE PAGO

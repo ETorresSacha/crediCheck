@@ -9,7 +9,6 @@ export const tasaEfectiva = (data)=>{
 
     // Cálculo de TEM
     const {tasaEfectivaPeriodico, periodo} = TEM(data)
-console.log("tasaEfectivaPeriodico: ",tasaEfectivaPeriodico);
 
     // Cálculo de TED
     const resultTED = TED(tasaEfectivaPeriodico)
@@ -114,7 +113,6 @@ export const calculoFRCA = (data) =>{
 //? --------------------- ESTA FUNCIÓN ES APLICABLE CON UN PRÉSTAMO INDEPENDIENTE ---------------------
  //TODO --> CRONOGRAMA PARA UN PRÉSTAMO INDEPENDIENTE
  export const cuotaIndependiente =(data)=>{
-console.log(data);
 
     const interesTotal = parseInt(data?.cuotas)*parseFloat(data?.interes)*parseFloat(data?.capital)/100
     let capital = parseFloat(data?.capital)

@@ -101,7 +101,9 @@ const ModalCancelPay = ({
           <View style={styles.graficoContainer}>
             <View style={styles.item}>
               <Text style={styles.itemTitle}>Capital: </Text>
-              <Text style={styles.itemText}>S/ {dataSee?.capital}</Text>
+              <Text style={styles.itemText}>
+                S/ {parseFloat(modify[0]?.capital).toFixed(2)}
+              </Text>
             </View>
             <View style={{ display: "flex", flexDirection: "column" }}>
               <View style={styles.item}>
