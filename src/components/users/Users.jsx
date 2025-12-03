@@ -78,7 +78,7 @@ const Users = ({ data, enable, dataConfiguration, day }) => {
                       textAlign: "right",
                       color: "orange",
                       fontSize:
-                        element?.resultPrestamo[0]?.cuotaNeto.length > 8
+                        element?.resultPrestamo[0]?.cuotaFinal?.length > 8
                           ? RFValue(10.5)
                           : RFValue(12),
                     },

@@ -16,7 +16,7 @@ const Cuota = ({
 }) => {
   const navigation = useNavigation();
 
-  const cuota2 = user.resultPrestamo[0]?.cuotaNeto;
+  const cuota2 = user.resultPrestamo[0]?.cuotaFinal;
 
   const handleRouteCronograma = () => {
     navigation.navigate("Cronograma", {

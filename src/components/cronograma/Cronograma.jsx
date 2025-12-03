@@ -93,7 +93,7 @@ const Cronograma = ({ data, dataConfiguration }) => {
                     ]}
                   >
                     {(
-                      parseFloat(element?.cuotaNeto) +
+                      parseFloat(element?.cuotaFinal) +
                       (element?.statusPay
                         ? element?.mora
                         : parseFloat(

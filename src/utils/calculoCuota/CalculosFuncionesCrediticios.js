@@ -309,9 +309,9 @@ export const cuotInterSimple =(capital,interes,tiempo,i,newCapital,cuotas)=>{
 
     return {
         resultInt:parseFloat(resultCuoInt).toFixed(2),
-        resultCuo: parseFloat(resultCuoCap).toFixed(2),
-        resultCap:parseFloat(resultCapital).toFixed(2),
-        resultCuoNeto: (parseFloat(resultCuoInt)+parseFloat(resultCuoCap)).toFixed(2)
+        resultCap: parseFloat(resultCuoCap).toFixed(2),
+        resultCapRest:parseFloat(resultCapital).toFixed(2),
+        resultCuoFinal: (parseFloat(resultCuoInt)+parseFloat(resultCuoCap)).toFixed(2)
     }
 }
 
@@ -390,4 +390,61 @@ export const calculoCanlelarDeuda =(resultPrestamo ,dataConfiguration,interes)=>
         interes : interesGenerado.toFixed(2),
         capitalPendiente:capitalPendiente.toFixed(2),
         montoTotal : montoCancelar.toFixed(2)}
+}
+
+
+
+//? ***************************************************************************************************
+
+//? **************************** SISTEMA DE AMORTIZACIÓN- SISTEMA FRANCÉS *****************************
+export const CuotIntFrances = (data,i,tem,periodo,resultFRCA,newCapital)=>{
+
+    let resultDiasMes = diasXmes(data,i)
+    let CAPITAL = parseFloat(data.capital)
+    let capRestante
+    let cuotaInt
+    let cuotaCap
+    let cuotaFinal
+
+    if(i === 0){
+
+         // Cuota interes
+         cuotaInt = IntCuo(tem,periodo,resultDiasMes,CAPITAL)
+         
+         // Cuota capital
+         cuotaCap =  CapitalCuo(CAPITAL,resultFRCA,cuotaInt)
+         
+         //Capital restante
+         capRestante = CAPITAL-cuotaCap
+         newCapital.push(capRestante)
+        
+        // Cálculo de la cuota final
+        cuotaFinal = parseFloat(cuotaInt + cuotaCap) 
+      
+    }
+    else{
+
+        // Cuota interes
+        cuotaInt = IntCuo(tem,periodo,resultDiasMes,newCapital[0])
+        
+        // Cuota capital
+        cuotaCap =  CapitalCuo(CAPITAL,resultFRCA,cuotaInt)
+        
+        // Cálculo de la cuota final
+        cuotaFinal = parseFloat(cuotaInt + cuotaCap) 
+        
+        //Capital restante
+        capRestante = (newCapital[0])-cuotaCap
+        capRestante = Number.parseFloat(capRestante).toFixed(10)
+        newCapital.shift()
+        newCapital.push(capRestante)
+ 
+    }
+
+    return {
+        resultInt:cuotaInt,
+        resultCap: cuotaCap,
+        resultCapRest:capRestante,
+        resultCuoFinal:parseFloat(cuotaFinal).toFixed(2)
+    }
 }

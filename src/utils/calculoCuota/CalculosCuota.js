@@ -1,6 +1,6 @@
  import {TED, TEM } from "./Formulas"
 
-import {  CuotInt, diasAcum, diasXmes, paymentDate, solutionFRC,calculoCuota, cuotInterSimple } from "./CalculosFuncionesCrediticios";
+import {  CuotInt, diasAcum, diasXmes, paymentDate, solutionFRC,calculoCuota, cuotInterSimple, CuotIntFrances } from "./CalculosFuncionesCrediticios";
 
 
 //? ************************ TODO ESTAS FUNCIONES SON APLICABLES PARA UNA FINANCIERA ************************
@@ -9,9 +9,10 @@ export const tasaEfectiva = (data)=>{
 
     // Cálculo de TEM
     const {tasaEfectivaPeriodico, periodo} = TEM(data)
+console.log("tasaEfectivaPeriodico: ",tasaEfectivaPeriodico);
 
     // Cálculo de TED
-    const resultTED = TED(tasaEfectivaPeriodico,periodo)
+    const resultTED = TED(tasaEfectivaPeriodico)
 
     return {
         tem:tasaEfectivaPeriodico,
@@ -22,8 +23,11 @@ export const tasaEfectiva = (data)=>{
 
     //TODO --> FRCA
 export const calculoFRCA = (data) =>{
+
    
     const resultTED = tasaEfectiva(data).ted
+    console.log("resultTED: ",resultTED);
+    
     let acumFRCA = []
 
     for (let i = 1;i<=data.cuotas;i++){
@@ -110,6 +114,7 @@ export const calculoFRCA = (data) =>{
 //? --------------------- ESTA FUNCIÓN ES APLICABLE CON UN PRÉSTAMO INDEPENDIENTE ---------------------
  //TODO --> CRONOGRAMA PARA UN PRÉSTAMO INDEPENDIENTE
  export const cuotaIndependiente =(data)=>{
+console.log(data);
 
     const interesTotal = parseInt(data?.cuotas)*parseFloat(data?.interes)*parseFloat(data?.capital)/100
     let capital = parseFloat(data?.capital)
@@ -131,9 +136,9 @@ export const calculoFRCA = (data) =>{
             Dias:diasXmes(data,i-1), 
             DiasAcum:diasAcum(data,i-1),
             cuotaInteres:cuotInterSimple(capital,interes,tiempo,i-1,newCapital).resultInt,
-            cuotaCapital:cuotInterSimple(capital,interes,tiempo,i-1,newCapital).resultCuo,
-            saldoCapital:cuotInterSimple(capital,interes,tiempo,i-1,newCapital).resultCap,
-            cuotaNeto:cuotInterSimple(capital,interes,tiempo,i-1,newCapital).resultCuoNeto,
+            cuotaCapital:cuotInterSimple(capital,interes,tiempo,i-1,newCapital).resultCap,
+            capital:cuotInterSimple(capital,interes,tiempo,i-1,newCapital).resultCapRest,
+            cuotaFinal:cuotInterSimple(capital,interes,tiempo,i-1,newCapital).resultCuoFinal,
             mora:0
         })
     }
@@ -141,3 +146,74 @@ export const calculoFRCA = (data) =>{
     return cronograma
  }
  //? --------------------- ---------------------------------------------------- ---------------------
+
+ //? ***************************************************************************************************
+ //? **************************** SISTEMA DE AMORTIZACIÓN- SISTEMA FRANCÉS *****************************
+// Cálculo del factor de recuperación de capital e intereses (FRCA)
+ export const FRCA = (data) =>{
+
+    const resultTED = TED(data?.interes)
+
+    let acumFRCA = []
+
+    for (let i = 1;i<=data.cuotas;i++){
+        solutionFRC(resultTED,data,i,acumFRCA)
+    }
+    
+    const resultFRCA = acumFRCA.reduce((accum, currentValue) => accum + currentValue,0);
+    return resultFRCA
+}
+ 
+ export const sistemaFrances = (data)=>{
+        // Tipo de periodo
+        let periodo
+            switch (data?.periodo) {
+        case 'Mensual':
+            periodo = 30
+            break
+
+        case 'Quincenal':
+            periodo = 15
+            break
+
+        case 'Semanal':
+            periodo = 7
+            break
+
+        case 'Diario':
+            periodo = 1
+            break
+    }
+
+        // calulo de TED (tasa efectiva diaria)
+        const resultTEM = data?.interes
+        const resultTED = TED(data?.interes)
+
+        // Cálculo FRCA
+        let resultFRCA = FRCA(data)
+        
+        let acumFRCA = []
+         let cronograma=[]
+         let newCapital = []
+
+        // Generación del cronograma
+         for(let i =1;i<=data?.cuotas;i++){
+            cronograma.push({
+                cuota:i, 
+                fechaDesembolso:data?.fechaDesembolso,
+                fechaPago:paymentDate(data,i-1),
+                interesTotal:0, // falta ubicar su uso
+                statusPay:false,
+                Dias:diasXmes(data,i-1), 
+                DiasAcum:diasAcum(data,i-1),
+                FRC :solutionFRC(resultTED,data,i,acumFRCA),
+                cuotaInteres:CuotIntFrances(data,i-1,resultTEM,periodo,resultFRCA,newCapital).resultInt,
+                cuotaCapital:CuotIntFrances(data,i-1,resultTEM,periodo,resultFRCA,newCapital).resultCap,
+                capital:CuotIntFrances(data,i-1,resultTEM,periodo,resultFRCA,newCapital).resultCapRest,
+                cuotaFinal : CuotIntFrances(data,i-1,resultTEM,periodo,resultFRCA,newCapital).resultCuoFinal,
+                mora:0
+            })
+
+         }
+       return cronograma  
+    }

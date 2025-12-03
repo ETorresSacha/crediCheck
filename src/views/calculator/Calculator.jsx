@@ -12,7 +12,10 @@ import Prestamo from "../../components/prestamo/Prestamo";
 import DetailCalculator from "../../components/detailCalculator/DetailCalculator";
 import { useFocusEffect } from "@react-navigation/native";
 import { validationDataPrestamo } from "../../utils/validation/Validation";
-import { cuotaIndependiente } from "../../utils/calculoCuota/CalculosCuota";
+import {
+  cuotaIndependiente,
+  sistemaFrances,
+} from "../../utils/calculoCuota/CalculosCuota";
 import Cuota from "../../components/cuota/Cuota";
 
 import equal from "deep-equal";
@@ -59,7 +62,7 @@ const Calculator = ({
     React.useCallback(() => {
       setCopyDataPrestamo(prestamo);
       setValueTPM(dataPerson?.tasaPrimaMensual);
-      setCuota(dataPerson?.resultPrestamo[0]?.cuotaNeto);
+      setCuota(dataPerson?.resultPrestamo[0]?.cuotaFinal);
 
       if (valuePrest) {
         setErrorsPrestamo(validationDataPrestamo(prestamo));
@@ -170,9 +173,13 @@ const Calculator = ({
       //   : route.params.data?.tpm,
       //     });
       //todo.................................................
+
+      // Metodo frances
       const result = changeValue
         ? user[0].resultPrestamo
-        : cuotaIndependiente(data);
+        : sistemaFrances(data);
+
+      console.log(result);
 
       if (dataPerson != undefined) {
         setDataPerson({
@@ -256,7 +263,7 @@ const Calculator = ({
           <DetailCalculator
             resultCuota={resultCuota}
             periodo={prestamo.periodo}
-            prestamo={prestamo}
+            //prestamo={prestamo}
           />
         ) : null}
       </View>

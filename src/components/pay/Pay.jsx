@@ -144,6 +144,7 @@ const Pay = ({
       }
     }
   };
+  console.log(data);
 
   return (
     <View style={styles.container}>
@@ -310,7 +311,7 @@ const Pay = ({
                         !canceledShare && dataSee?.mora != 0 ? "red" : "orange",
 
                       fontSize:
-                        dataSee?.cuotaNeto?.length >= 8
+                        dataSee?.cuotaFinal?.length >= 8
                           ? RFValue(12)
                           : RFValue(13),
                     },
@@ -319,7 +320,7 @@ const Pay = ({
                   S/{" "}
                   {!canceledShare
                     ? (
-                        parseFloat(dataSee?.cuotaNeto) +
+                        parseFloat(dataSee?.cuotaFinal) +
                         parseFloat(dataSee?.mora)
                       ).toFixed(2)
                     : "0"}
@@ -351,7 +352,7 @@ const Pay = ({
               >
                 <Text style={styles.subTitle}>Total del préstamo</Text>
                 <Text style={{ color: "white", fontSize: RFValue(14) }}>
-                  S/ {dataSee?.capital}
+                  S/ {data[0]?.capital}
                 </Text>
               </View>
 
@@ -403,7 +404,7 @@ const Pay = ({
               >
                 <Text style={styles.subTitle}>Cuota</Text>
                 <Text style={{ color: "white", fontSize: RFValue(14) }}>
-                  S/ {!canceledShare ? dataSee?.cuotaNeto : "0"}
+                  S/ {!canceledShare ? dataSee?.cuotaFinal : "0"}
                 </Text>
               </View>
 

@@ -2,6 +2,7 @@
 // Cálculo de la tasa efectiva mensual, semanal, quincenal, diario
 export const TEM = (data)=>{ 
     let periodo
+    
     switch (data?.periodo) {
         case 'Mensual':
             periodo = 30
@@ -26,9 +27,8 @@ export const TEM = (data)=>{
 }
 
 // Cálculo de la tasa efectiva diaria
-export const TED = (TEM, periodo)=>{
- 
-    const result =  ((Math.pow((1+(TEM/100)),(1/periodo)))-1)*100
+export const TED = (TEM)=>{
+    const result =  ((Math.pow((1+(TEM/100)),(1/30)))-1)*100
     return result
 }
 

@@ -182,7 +182,7 @@ export const datePay = (data,day)=>{
 export const montoPay = (data,dataConfiguration)=>{
   
   let result =data?.find((element) => element.statusPay == false)
-  return parseFloat(result?.cuotaNeto) +  parseFloat(calculoMoraSimple(result,dataConfiguration))
+  return parseFloat(result?.cuotaFinal) +  parseFloat(calculoMoraSimple(result,dataConfiguration))
 
 }
 

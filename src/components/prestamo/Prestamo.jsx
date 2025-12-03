@@ -122,10 +122,10 @@ const Prestamo = ({
         <View style={{ width: RFPercentage(6), backgroundColor: "red" }}></View>
       </View>
 
-      {/* ------------------ TEA ó INTERES ------------------*/}
+      {/* ------------------ TEA ó INTERÉS ------------------*/}
       <View style={styles.formItem}>
         <View style={styles.legendContainer}>
-          <Text style={styles.legend}>Interes:</Text>
+          <Text style={styles.legend}>Interés mensual:</Text>
         </View>
         <View style={styles.inputContainer}>
           <TextInput
