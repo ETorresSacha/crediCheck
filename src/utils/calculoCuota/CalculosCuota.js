@@ -200,7 +200,6 @@ export const calculoFRCA = (data) =>{
                 cuota:i, 
                 fechaDesembolso:data?.fechaDesembolso,
                 fechaPago:paymentDate(data,i-1),
-                interesTotal:0, // falta ubicar su uso
                 statusPay:false,
                 Dias:diasXmes(data,i-1), 
                 DiasAcum:diasAcum(data,i-1),

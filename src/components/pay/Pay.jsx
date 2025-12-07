@@ -355,19 +355,6 @@ const Pay = ({
                 </Text>
               </View>
 
-              {/* Total del interés */}
-              <View
-                style={[
-                  styles.containerSubTitle,
-                  { justifyContent: "space-between" },
-                ]}
-              >
-                <Text style={styles.subTitle}>Total del interés</Text>
-                <Text style={{ color: "white", fontSize: RFValue(14) }}>
-                  S/ {dataSee?.interesTotal}
-                </Text>
-              </View>
-
               {/* Tipo de préstamo */}
               <View
                 style={[

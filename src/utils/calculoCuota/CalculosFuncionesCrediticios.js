@@ -243,7 +243,7 @@ export const calculoMora = (data, dataConfiguration)=>{
     if(diff > 0 && !data?.statusPay){ mora = (intMoratorio*data?.cuotaCapital*diff)/100 + parseFloat(ccv)}
     else{mora=data?.mora}
      
-     return mora //!.toFixed(2) tenerlo encuenta
+     return mora 
 
 }
 
@@ -381,8 +381,6 @@ export const calculoCanlelarDeuda =(resultPrestamo ,dataConfiguration,interes)=>
          capitalPendiente:capitalPendiente.toFixed(2),
         }
 }
-
-
 
 //? ***************************************************************************************************
 
