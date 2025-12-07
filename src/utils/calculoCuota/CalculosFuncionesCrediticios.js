@@ -332,8 +332,7 @@ export const calculoMoraSimple = (data, dataConfiguration)=>{
 
 export const calculoCanlelarDeuda =(resultPrestamo ,dataConfiguration,interes)=>{
 
-    console.log("resultPrestamo: ",interes);
-    
+   
     // Calculamos la mora para cada cuota
     let moraData = resultPrestamo.map(element=>{  
         let montoMora = element?.mora
@@ -344,9 +343,9 @@ export const calculoCanlelarDeuda =(resultPrestamo ,dataConfiguration,interes)=>
     })
     
     let cuotaMora = moraData.filter(element=>element?.statusPay == false) // filtramos las cuotas pagadas de las pendientes
-    
-     // suma total de las cuotas que estan en mora
-     let cuotasPendientesMora = cuotaMora.filter(element=>element?.mora!=0)
+
+    // suma total de las cuotas que estan en mora
+    let cuotasPendientesMora = cuotaMora.filter(element=>element?.mora!=0) // cuotas que tienen mora pendiente
 
      let montoPendienteMora = cuotasPendientesMora?.length * (cuotasPendientesMora?.length == 0 ? 0 :cuotasPendientesMora[0]?.cuotaFinal) // antes de la operación evalua si existen cuaotas pendientes
 
@@ -356,34 +355,23 @@ export const calculoCanlelarDeuda =(resultPrestamo ,dataConfiguration,interes)=>
 
     moraTotal = moraTotal.reduce((accumulator, currentValue) => accumulator + currentValue,initialValue); // suma todas las moras
 
-
-//! existe un error en el calculo del interes generado hasta la fecha de pago; funciona de forma mensual,
-//! pero si la cuota es quincenal o semanal no funciona correctamente, menos si es diario
     // interes generado hasta la fecha de pago
     let cuotaPendiente = cuotaMora.find(element =>element?.mora == 0) // la data que se encuentra dentro del plazo de pago
-console.log("cuotaPendiente: ",cuotaPendiente);
 
-        // cálculo de los dias de diferencia
+        // Dias transcurridos desde la fecha de pago
 
-        const fechaModificada = new Date(cuotaPendiente?.fechaPago); // hacemos una copia
-            fechaModificada.setMonth(fechaModificada.getMonth() - 1);
-        console.log("fechaModificada: ",fechaModificada);
+        const fechDePago = new Date(cuotaPendiente?.fechaPago);
+        const fechaAnterior = new Date(fechDePago);
+        fechaAnterior.setDate(fechDePago.getDate() - cuotaPendiente?.Dias); 
+        const diasPendientes = differenceInDays(new Date(),fechaAnterior) // diferencia de los dias pendientes      
         
-        const diasPendientes = differenceInDays(new Date(),fechaModificada) // diferencia de los dias pendientes      
-        console.log("diasPendientes: ",diasPendientes);
-        
-        // let interesGenerado = (parseFloat(cuotaPendiente?.capital)+ parseFloat(cuotaPendiente?.cuotaCapital))*diasPendientes*interes/(100*30) // formula : I = capital*dias*interes diario
+        // Interes generado
         let interesGenerado = ((Math.pow((1+(interes/100)),(diasPendientes/30)))-1)*(parseFloat(cuotaPendiente?.capital)+ parseFloat(cuotaPendiente?.cuotaCapital))
-            interesGenerado = interesGenerado < 0 ? 0 : interesGenerado // Si el interes generado es negativo se considerará cero debido a la anterioridad de la fecha de vencimiento
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        interesGenerado = interesGenerado < 0 ? 0 : interesGenerado // Si el interes generado es negativo se considerará cero debido a la anterioridad de la fecha de vencimiento
+
     // monto de la deuda a cancelar
     let capitalPendiente = (parseFloat(cuotaPendiente?.capital)+ parseFloat(cuotaPendiente?.cuotaCapital))
-
-    
-
-    let montoCancelar = capitalPendiente + moraTotal + montoPendienteMora + interesGenerado
-    
 
 
     return {
@@ -391,7 +379,6 @@ console.log("cuotaPendiente: ",cuotaPendiente);
          mora :parseFloat(moraTotal).toFixed(2),
          interes : interesGenerado.toFixed(2),
          capitalPendiente:capitalPendiente.toFixed(2),
-        // montoTotal : montoCancelar.toFixed(2)
         }
 }
 
