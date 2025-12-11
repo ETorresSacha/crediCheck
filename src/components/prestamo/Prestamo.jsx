@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { View, StyleSheet, Text, TextInput } from "react-native";
+//import { MaterialDesignIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+import {
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import DatePrestamo from "../date/DatePrestamo";
 import { useFocusEffect } from "@react-navigation/native";
 //import { RadioButton } from "react-native-paper";
 import { RFPercentage } from "react-native-responsive-fontsize";
+import Usura from "../../modals/usura/Usura,";
 
 const infoPeriod = [
   { label: "Diario", value: "1" },
@@ -25,6 +35,7 @@ const Prestamo = ({
 }) => {
   const [value, setValue] = useState("");
   const [placeholderNumCuotas, setPlaceholderNumCuotas] = useState("");
+  const [isVisible, setIsVisible] = useState(false); // Habilita el modal de cancelar la deuda
 
   const renderItem = (item) => {
     return (
@@ -144,8 +155,22 @@ const Prestamo = ({
             keyboardType="numeric"
           />
         </View>
-        <View style={{ width: RFPercentage(6), backgroundColor: "red" }}></View>
+
+        {/* ícono de la alerta de usura */}
+        <TouchableOpacity
+          style={styles.iconAlert}
+          onPress={() => setIsVisible(true)}
+        >
+          <MaterialCommunityIcons
+            name="message-alert"
+            size={32}
+            color="yellow"
+          />
+        </TouchableOpacity>
       </View>
+
+      {/* modal de usura */}
+      <Usura isVisible={isVisible} setIsVisible={setIsVisible} />
 
       {/* ------------------ NÚMERO DE CUOTAS ------------------*/}
       <View style={styles.formItem}>
@@ -249,5 +274,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 2,
+  },
+  iconAlert: {
+    borderRadius: 10,
+    width: 40,
+    alignItems: "center",
+    borderColor: "yellow",
+    borderWidth: 1,
   },
 });
