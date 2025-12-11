@@ -22,6 +22,8 @@ import equal from "deep-equal";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import fondoCalculadora from "../../../assets/fondoCalculadora.jpg";
 import Header from "../../components/header/Header";
+import { TCEA } from "../../utils/calculoCuota/Formulas";
+import { set } from "date-fns";
 
 const Calculator = ({
   errorsP,
@@ -47,6 +49,7 @@ const Calculator = ({
   const [resultView, setResultView] = useState(true);
   const [valueTPM, setValueTPM] = useState("");
   const [cuota, setCuota] = useState();
+  const [tcea, setTcea] = useState();
 
   const [prestamo, setPrestamo] = useState({
     periodo: !dataPerson ? "" : dataPerson.periodo,
@@ -179,6 +182,11 @@ const Calculator = ({
         ? user[0].resultPrestamo
         : sistemaFrances(data);
 
+      // cálculo de la TCEA
+      const tasaAnual = TCEA(data?.interes, 12);
+      setTcea(tasaAnual);
+
+      // datos del préstamo
       if (dataPerson != undefined) {
         setDataPerson({
           ...dataPerson,
@@ -227,6 +235,7 @@ const Calculator = ({
         valuePrest={valuePrest}
         cleanCalculator={cleanCalculator}
         clean={clean}
+        tcea={tcea}
       />
       <View>
         {/* ------------------ CALCULAR ------------------*/}

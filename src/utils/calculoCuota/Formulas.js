@@ -70,7 +70,7 @@ export const CM = (capital,FRCA,MonSegDM)=>{
 
 // Cálculo de la tasa de costo efectivo anual
 export const TCEA =(tm,n)=>{
-    const result = ((Math.pow((1+tm),(n)))-1)*100
+    const result = ((Math.pow((1+parseFloat(tm)/100),(n)))-1)*100
     return Number.parseFloat(result).toFixed(2)
 
 }

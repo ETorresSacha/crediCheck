@@ -7,11 +7,9 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import React from "react";
-import { Octicons } from "@expo/vector-icons";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
-const Usura = ({ isVisible, setIsVisible }) => {
+const Usura = ({ isVisible, setIsVisible, tcea }) => {
   return (
     <Modal
       transparent={true}
@@ -22,35 +20,51 @@ const Usura = ({ isVisible, setIsVisible }) => {
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
             <View style={styles.contenttitle}>
-              <Text
-                style={[
-                  styles.textTitle,
-                  {
-                    textAlign: "center",
-                    color: "orange",
-                    fontSize: RFValue(18),
-                  },
-                ]}
-              >
-                ALERTA LEGAL
+              <Text style={styles.riskWarning}>
+                ⚠️ ADVERTENCIA LEGAL: LÍMITE DE USURA
               </Text>
             </View>
             <View style={styles.contentTectAlert}>
-              <Octicons name="alert-fill" size={80} color="yellow" />
-              <View style={styles.textAlert}>
-                <Text style={[styles.textTitle, { textAlign: "center" }]}>
-                  "La tasa ingresada [X%] excede el límite máximo legal para
-                  microcréditos según el BCRP. Continuar el préstamo con esta
-                  tasa puede constituir el delito de Usura."
+              <View style={styles.alertContainer}>
+                <Text style={styles.textTitle}>
+                  La Tasa Efectiva Anual (TEA) calculada para este préstamo es
+                  de
+                  <Text style={styles.teaValue}> {tcea} %</Text>.{"\n"}
+                </Text>
+
+                <Text style={styles.textTitle}>
+                  Esta tasa supera el límite máximo legal establecido por el
+                  BCRP/SBS. Cobrarla puede constituir el{" "}
+                  <Text style={styles.keyLegalPhrase}>DELITO DE USURA</Text>{" "}
+                  (Art. 214 del Código Penal).
+                </Text>
+
+                <Text style={styles.disclaimerText}>
+                  Reconoce haber sido advertido del riesgo legal y asume la{" "}
+                  <Text style={styles.keyLegalPhrase}>
+                    RESPONSABILIDAD TOTAL y ÚNICA
+                  </Text>{" "}
+                  sobre la aplicación de esta tasa.
                 </Text>
               </View>
             </View>
-            <View style={styles.contentButtons}>
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={styles.textButton}>CONTINUAR</Text>
+
+            {/*   Botones de acción */}
+            <View style={styles.buttonContainer}>
+              {/* Botón de Seguridad (Verde) */}
+              <TouchableOpacity
+                style={[styles.button, styles.safeButton]}
+                onPress={() => setIsVisible(false)}
+              >
+                <Text style={styles.buttonText}>VOLVER</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={styles.textButton}>CANCELAR</Text>
+
+              {/* Botón de Riesgo (Rojo) */}
+              <TouchableOpacity
+                style={[styles.button, styles.riskButton]}
+                onPress={() => setIsVisible(false)}
+              >
+                <Text style={styles.buttonText}>ACEPTO</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -64,7 +78,6 @@ export default Usura;
 
 const styles = StyleSheet.create({
   container: {
-    //flex: 1,
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   modalOverlay: {
@@ -73,15 +86,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   modalContent: {
-    backgroundColor: "rgba(6, 18, 20, 0.836)",
-    borderRadius: 15,
-    // position: "absolute",
-    // top: "30%",
-    // left: "7%",
-    // right: "7%",
-    borderColor: "yellow",
-    borderWidth: 1,
-    //paddingVertical: 10,
+    padding: 15,
+    backgroundColor: "#FDECEC", // Fondo muy claro para indicar advertencia
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "#D8000C", // Borde rojo fuerte
+    textAlign: "left",
+    width: "85%",
+    alignSelf: "center",
   },
   contenttitle: {
     flexDirection: "row",
@@ -90,17 +102,16 @@ const styles = StyleSheet.create({
     alignContent: "center",
     color: "cornsilk",
     fontWeight: "bold",
-    //backgroundColor: "#E7E7E5",
     borderTopLeftRadius: 14,
     marginTop: 20,
     borderTopRightRadius: 14,
   },
 
   textTitle: {
-    //fontSize: 20,
     fontWeight: "bold",
-    color: "white",
     fontFamily: "system-ui",
+    lineHeight: 20,
+    letterSpacing: 0.25,
   },
   contentTectAlert: {
     flexDirection: "row",
@@ -110,7 +121,6 @@ const styles = StyleSheet.create({
     gap: 15,
   },
   textAlert: {
-    // backgroundColor: "#f60e2b",
     width: "65%",
     padding: 10,
     borderRadius: 10,
@@ -123,12 +133,9 @@ const styles = StyleSheet.create({
     elevation: 5,
     borderWidth: 1,
     backgroundColor: "rgb(36, 224, 221)",
-    //marginBottom: 15,
     width: "40%",
     textAlign: "center",
     alignItems: "center",
-    //alignSelf: "center",
-    // marginHorizontal: 100,
   },
   contentButtons: {
     display: "flex",
@@ -142,5 +149,62 @@ const styles = StyleSheet.create({
     fontSize: RFValue(14),
     color: "cornsilk",
     fontFamily: "system-ui",
+  },
+
+  alertContainer: {
+    padding: 15,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: "#D8000C", // Borde rojo fuerte
+    textAlign: "left",
+  },
+  riskWarning: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#D8000C", // Color rojo para riesgo
+    marginBottom: 8,
+    textAlign: "center",
+  },
+  teaValue: {
+    fontSize: 18,
+    fontWeight: "700", // Extra bold para el porcentaje
+    color: "#000000",
+    letterSpacing: 0.25,
+  },
+  keyLegalPhrase: {
+    fontWeight: "bold",
+    color: "#D8000C", // Rojo para resaltar "DELITO DE USURA"
+  },
+  disclaimerText: {
+    fontSize: 14,
+    color: "#444444",
+    marginTop: 10,
+    lineHeight: 20, // Mejora la legibilidad del párrafo de descargo
+    letterSpacing: 0.25,
+  },
+
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between", // O 'space-around'
+    marginTop: 20,
+  },
+  button: {
+    paddingVertical: 12,
+    paddingHorizontal: 15,
+    borderRadius: 5,
+    flex: 1, // Para que ocupen el mismo ancho
+    marginHorizontal: 5,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "white", // Texto blanco sobre colores fuertes
+    fontWeight: "bold",
+    fontSize: 14,
+  },
+  safeButton: {
+    backgroundColor: "#4CAF50", // Verde
+  },
+  riskButton: {
+    backgroundColor: "#D32F2F", // Rojo
   },
 });

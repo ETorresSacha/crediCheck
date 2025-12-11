@@ -23,9 +23,7 @@ export const tasaEfectiva = (data)=>{
     //TODO --> FRCA
 export const calculoFRCA = (data) =>{
 
-   
     const resultTED = tasaEfectiva(data).ted
-    console.log("resultTED: ",resultTED);
     
     let acumFRCA = []
 

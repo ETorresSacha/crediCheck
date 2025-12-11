@@ -2,7 +2,8 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 
 const DetailCalculator = ({ resultCuota, periodo }) => {
-  const cuota = resultCuota[0]?.cuotaFinal?.toFixed(2);
+  const cuota = resultCuota[0]?.cuotaFinal;
+  console.log("cuota detail calculator: ", cuota);
 
   return (
     <View style={styles.container}>

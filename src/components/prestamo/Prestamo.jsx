@@ -32,6 +32,7 @@ const Prestamo = ({
   valuePrest,
   cleanCalculator,
   clean,
+  tcea,
 }) => {
   const [value, setValue] = useState("");
   const [placeholderNumCuotas, setPlaceholderNumCuotas] = useState("");
@@ -133,45 +134,6 @@ const Prestamo = ({
         <View style={{ width: RFPercentage(6), backgroundColor: "red" }}></View>
       </View>
 
-      {/* ------------------ TEA ó INTERÉS ------------------*/}
-      <View style={styles.formItem}>
-        <View style={styles.legendContainer}>
-          <Text style={styles.legend}>Interés mensual:</Text>
-        </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder="%"
-            placeholderTextColor="gray"
-            style={
-              !errorsPrestamo.interes
-                ? [styles.input, { borderBottomColor: "white" }]
-                : [styles.input, { borderBottomColor: "red" }]
-            }
-            value={prestamo?.interes}
-            defaultValue={prestamo?.interes}
-            onChange={(event) => {
-              handleChangeData(event, "interes");
-            }}
-            keyboardType="numeric"
-          />
-        </View>
-
-        {/* ícono de la alerta de usura */}
-        <TouchableOpacity
-          style={styles.iconAlert}
-          onPress={() => setIsVisible(true)}
-        >
-          <MaterialCommunityIcons
-            name="message-alert"
-            size={32}
-            color="yellow"
-          />
-        </TouchableOpacity>
-      </View>
-
-      {/* modal de usura */}
-      <Usura isVisible={isVisible} setIsVisible={setIsVisible} />
-
       {/* ------------------ NÚMERO DE CUOTAS ------------------*/}
       <View style={styles.formItem}>
         <View style={styles.legendContainer}>
@@ -197,6 +159,51 @@ const Prestamo = ({
         </View>
         <View style={{ width: RFPercentage(6), backgroundColor: "red" }}></View>
       </View>
+
+      {/* ------------------ TEA ó INTERÉS ------------------*/}
+      <View style={styles.formItem}>
+        <View style={styles.legendContainer}>
+          <Text style={styles.legend}>Interés mensual:</Text>
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="%"
+            placeholderTextColor="gray"
+            style={
+              !errorsPrestamo.interes
+                ? [styles.input, { borderBottomColor: "white" }]
+                : [styles.input, { borderBottomColor: "red" }]
+            }
+            value={prestamo?.interes}
+            defaultValue={prestamo?.interes}
+            onChange={(event) => {
+              handleChangeData(event, "interes");
+            }}
+            keyboardType="numeric"
+          />
+        </View>
+
+        {/* ícono de la alerta de usura */}
+        {tcea > 113 ? (
+          <TouchableOpacity
+            style={styles.iconAlert}
+            onPress={() => setIsVisible(true)}
+          >
+            <MaterialCommunityIcons
+              name="message-alert"
+              size={32}
+              color="yellow"
+            />
+          </TouchableOpacity>
+        ) : (
+          <View
+            style={{ width: RFPercentage(6), backgroundColor: "red" }}
+          ></View>
+        )}
+      </View>
+
+      {/* modal de usura */}
+      <Usura isVisible={isVisible} setIsVisible={setIsVisible} tcea={tcea} />
 
       {/* ------------------ FECHA DE DESEMBOLSO ------------------*/}
       <DatePrestamo

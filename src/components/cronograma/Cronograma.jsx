@@ -3,10 +3,7 @@ import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { formatDate } from "../../utils/thunks/Thunks";
 import Checkbox from "expo-checkbox";
 import Loading from "../loading/Loading";
-import {
-  calculoMora,
-  calculoMoraSimple,
-} from "../../utils/calculoCuota/CalculosFuncionesCrediticios";
+import { calculoMora } from "../../utils/calculoCuota/CalculosFuncionesCrediticios";
 
 const Cronograma = ({ data, dataConfiguration }) => {
   const [updatePrestamo, setUpdatePrestamo] = useState([]); // ResultPrestamo
@@ -92,10 +89,6 @@ const Cronograma = ({ data, dataConfiguration }) => {
                       },
                     ]}
                   >
-                    {/* {parseFloat(element?.cuotaFinal) +
-                      (element?.statusPay
-                        ? (element?.mora)
-                        : parseFloat(calculoMora(element, dataConfiguration)))} */}
                     {(
                       parseFloat(element?.cuotaFinal) +
                       parseFloat(calculoMora(element, dataConfiguration))
