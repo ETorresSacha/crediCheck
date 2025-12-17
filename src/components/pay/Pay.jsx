@@ -144,6 +144,20 @@ const Pay = ({
       }
     }
   };
+  // data,
+  // indice,
+  // setIndice,
+  // modify,
+  // dataSee,
+  // setDataSee,
+  // canceledShare,
+  // setCanceledShare,
+  // updatePrestamo,
+  // valueProps,
+  // setValueProps,
+  // setUser,
+
+  //console.log("data: ", data[0]?.interes);
 
   return (
     <View style={styles.container}>
@@ -171,6 +185,7 @@ const Pay = ({
                     typeColor: valueProps?.typeColor,
                     enable: valueProps?.enable,
                     dataConfiguration: valueProps?.dataConfiguration,
+                    interes: data[0]?.interes,
                   })
                 }
               >

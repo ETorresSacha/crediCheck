@@ -179,11 +179,11 @@ export const datePay = (data,day)=>{
     
 }
 
-export const montoPay = (data,dataConfiguration)=>{
-  
+//TODO--> MONTO DE PAGO
+export const montoPay = (data,dataConfiguration,interes)=>{
   let result =data?.find((element) => element.statusPay == false)
   
-return parseFloat(result?.cuotaFinal) +  parseFloat(calculoMora(result,dataConfiguration))
+return parseFloat(result?.cuotaFinal) +  parseFloat(calculoMora(result,dataConfiguration,interes))
 }
 
 //TODO--> FILTRAR LOS CLIENTES DE ACUERDO A SU ESTADO DE PAGO

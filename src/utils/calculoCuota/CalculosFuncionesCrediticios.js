@@ -215,15 +215,14 @@ export const CuotInt = (data,i,tem,periodo,resultFRCA,newCapital,TSegM)=>{
 
 
 //TODO --> CÁLCULO DE LA MORA 
-export const calculoMora = (data, dataConfiguration)=>{
-
+export const calculoMora = (data, dataConfiguration,interes)=>{
     let mora
-    let intMoratorio =parseFloat(dataConfiguration?.intMoratorio)  // % --> Diario
     
     let ccv = data?.cuotaFinal*0.02 // Comisión de Cobranza Variable (soles)--> se aplica el 2% del monto de la cuota
-    
+
     // % de interes moratorio diario
-     intMoratorio = (Math.pow(1 +intMoratorio / 100, 1 / 360) - 1) * 100;
+    const interesDiario = TED(interes) // interes diario
+    const intMoratorio = ((1+(parseFloat(dataConfiguration?.intMoratorio)/100))*interesDiario) // % aplicado a la mora diaria sera el interes de la mora diario
 
     // Cálculo de los dias de mora
     let today = format(new Date(),"yyyy-MM-dd")
@@ -373,7 +372,6 @@ export const calculoCanlelarDeuda =(resultPrestamo ,dataConfiguration,interes)=>
     // monto de la deuda a cancelar
     let capitalPendiente = (parseFloat(cuotaPendiente?.capital)+ parseFloat(cuotaPendiente?.cuotaCapital))
 
-
     return {
         capitalMora : montoPendienteMora.toFixed(2),
          mora :parseFloat(moraTotal).toFixed(2),
@@ -385,7 +383,7 @@ export const calculoCanlelarDeuda =(resultPrestamo ,dataConfiguration,interes)=>
 //? ***************************************************************************************************
 
 //? **************************** SISTEMA DE AMORTIZACIÓN- SISTEMA FRANCÉS *****************************
-export const CuotIntFrances = (data,i,tem,periodo,resultFRCA,newCapital)=>{
+export const CuotIntFrances = (data,i,tem,resultFRCA,newCapital)=>{
 
     let resultDiasMes = diasXmes(data,i)
     let CAPITAL = parseFloat(data.capital)
@@ -397,7 +395,7 @@ export const CuotIntFrances = (data,i,tem,periodo,resultFRCA,newCapital)=>{
     if(i === 0){
 
          // Cuota interes
-         cuotaInt = IntCuo(tem,periodo,resultDiasMes,CAPITAL)
+         cuotaInt = IntCuo(tem,resultDiasMes,CAPITAL)
          
          // Cuota capital
          cuotaCap =  CapitalCuo(CAPITAL,resultFRCA,cuotaInt)
@@ -413,7 +411,7 @@ export const CuotIntFrances = (data,i,tem,periodo,resultFRCA,newCapital)=>{
     else{
 
         // Cuota interes
-        cuotaInt = IntCuo(tem,periodo,resultDiasMes,newCapital[0])
+        cuotaInt = IntCuo(tem,resultDiasMes,newCapital[0])
         
         // Cuota capital
         cuotaCap =  CapitalCuo(CAPITAL,resultFRCA,cuotaInt)

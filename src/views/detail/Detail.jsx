@@ -78,7 +78,11 @@ const Detail = (props) => {
       if (result != undefined) {
         result = {
           ...result,
-          mora: calculoMora(result, valueProps?.dataConfiguration),
+          mora: calculoMora(
+            result,
+            valueProps?.dataConfiguration,
+            user[0]?.interes // calculamos la mora
+          ),
         };
 
         setDataSee(result);
@@ -139,6 +143,7 @@ const Detail = (props) => {
     ]);
   };
 
+  console.log("dataSeev: ", dataSee);
   return (
     <View style={styles.container}>
       {dataSee == undefined ? (

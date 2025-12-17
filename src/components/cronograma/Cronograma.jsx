@@ -5,12 +5,13 @@ import Checkbox from "expo-checkbox";
 import Loading from "../loading/Loading";
 import { calculoMora } from "../../utils/calculoCuota/CalculosFuncionesCrediticios";
 
-const Cronograma = ({ data, dataConfiguration }) => {
+const Cronograma = ({ data, dataConfiguration, interes }) => {
   const [updatePrestamo, setUpdatePrestamo] = useState([]); // ResultPrestamo
 
   useEffect(() => {
     setUpdatePrestamo(data?.resultPrestamo);
   }, [data]);
+  //console.log("userCronograma: ", updatePrestamo);
 
   return (
     <View style={styles.containerContainer}>
@@ -80,7 +81,11 @@ const Cronograma = ({ data, dataConfiguration }) => {
                           data?.canceled && !element?.statusPay
                             ? "gray"
                             : !element?.statusPay &&
-                              `${calculoMora(element, dataConfiguration)}` != 0
+                              `${calculoMora(
+                                element,
+                                dataConfiguration,
+                                interes
+                              )}` != 0
                             ? "red"
                             : updatePrestamo[index]?.mora > 0 &&
                               element?.statusPay
@@ -91,7 +96,9 @@ const Cronograma = ({ data, dataConfiguration }) => {
                   >
                     {(
                       parseFloat(element?.cuotaFinal) +
-                      parseFloat(calculoMora(element, dataConfiguration))
+                      parseFloat(
+                        calculoMora(element, dataConfiguration, interes)
+                      )
                     ).toFixed(2)}
                   </Text>
                   <Checkbox

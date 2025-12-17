@@ -32,11 +32,11 @@ const Prestamo = ({
   valuePrest,
   cleanCalculator,
   clean,
-  tcea,
+  tea,
 }) => {
   const [value, setValue] = useState("");
   const [placeholderNumCuotas, setPlaceholderNumCuotas] = useState("");
-  const [isVisible, setIsVisible] = useState(false); // Habilita el modal de cancelar la deuda
+  const [isVisible, setIsVisible] = useState(false); // Habilita el modal de USURA
 
   const renderItem = (item) => {
     return (
@@ -184,7 +184,7 @@ const Prestamo = ({
         </View>
 
         {/* ícono de la alerta de usura */}
-        {tcea > 113 ? (
+        {tea > 113 ? (
           <TouchableOpacity
             style={styles.iconAlert}
             onPress={() => setIsVisible(true)}
@@ -203,7 +203,7 @@ const Prestamo = ({
       </View>
 
       {/* modal de usura */}
-      <Usura isVisible={isVisible} setIsVisible={setIsVisible} tcea={tcea} />
+      <Usura isVisible={isVisible} setIsVisible={setIsVisible} tea={tea} />
 
       {/* ------------------ FECHA DE DESEMBOLSO ------------------*/}
       <DatePrestamo

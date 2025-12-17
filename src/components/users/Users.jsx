@@ -4,7 +4,7 @@ import { datePay, montoPay } from "../../utils/thunks/Thunks";
 import { FontAwesome } from "@expo/vector-icons";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
-const Users = ({ data, enable, dataConfiguration, day }) => {
+const Users = ({ data, dataConfiguration, day, enable }) => {
   const navigation = useNavigation();
 
   //todo--> se guardará este código, como para recordar la funcionalida, puede ser útil en otra aplicación (estilo dinamico)
@@ -88,7 +88,8 @@ const Users = ({ data, enable, dataConfiguration, day }) => {
                     ? parseFloat(element?.capital).toFixed(2)
                     : montoPay(
                         element?.resultPrestamo,
-                        dataConfiguration
+                        dataConfiguration,
+                        element?.interes
                       ).toFixed(2)}
                 </Text>
               </View>

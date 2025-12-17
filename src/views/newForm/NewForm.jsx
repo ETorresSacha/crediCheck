@@ -10,11 +10,13 @@ import {
 import DataCustomer from "../../components/dataCustomer/DataCustomer";
 import UseStorage from "../../components/hooks/UseHookStorage";
 import Calculator from "../calculator/Calculator";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import "react-native-get-random-values"; // generea valores aleatorios para que el uuid no se repita
 import { v4 as uuidv4 } from "uuid";
 import { validationDataPerson } from "../../utils/validation/Validation";
 import Header from "../../components/header/Header";
+import { TEA } from "../../utils/calculoCuota/Formulas";
+import Usura from "../../modals/usura/Usura,";
 
 const NewForm = (props) => {
   const uuid = uuidv4();
@@ -25,6 +27,9 @@ const NewForm = (props) => {
   const [clean, setClean] = useState(false);
   const [valuePrest, setValuePrest] = useState(false);
   const [valueError, setValueError] = useState(false);
+  const [isVisible, setIsVisible] = useState(false); // Habilita el modal de USURA
+  const [tea, setTea] = useState();
+  const [confirmacion, setConfirmacion] = useState(false); // confirma si acepta o no la USURA
 
   // TODO --> Editar los datos
   // *** Propiedades que se usan para editar ***
@@ -83,6 +88,8 @@ const NewForm = (props) => {
 
   // TODO ---> Guardar los datos
   const handleDataKeep = async () => {
+    setConfirmacion(false); // confirmación de guardar los datos en estado false
+
     // Validación
     setValuePrest(true);
     setErrores(validationDataPerson(dataPerson));
@@ -91,6 +98,10 @@ const NewForm = (props) => {
     let errorCustomer = validationDataPerson(dataPerson);
     let valuesErrorDataCustomer = Object.values(errorCustomer); // Errores del componente DataCustomer
     let valuesErrorPrestamos = Object.values(errorsP); // Errores del componente Prestamo
+
+    // calculamos el TEA
+    const interesAnual = TEA(dataPerson?.interes, 12);
+    setTea(interesAnual);
 
     if (valuesErrorDataCustomer.some((error) => error !== "") || !valueError) {
       let typeError = valuesErrorDataCustomer.find((element) => element != ""); // Busca el tipo de error que existe en dataCustomer
@@ -103,18 +114,8 @@ const NewForm = (props) => {
           {
             text: "Si",
             onPress: async () => {
-              setValuePrest(false);
-              await onSaveCronograma(dataPerson, editValue);
-              if (editValue) {
-                navigation.navigate("Detalle", {
-                  id: id,
-                  typeColor: typeColor,
-                  enable: enable ? enable : null,
-                  dataConfiguration: dataConfiguration,
-                });
-              } else {
-                setClean(true);
-              }
+              if (interesAnual > 113) setIsVisible(true);
+              else setConfirmacion(true);
             },
             style: "destructive",
           },
@@ -130,6 +131,33 @@ const NewForm = (props) => {
     }
   };
 
+  // Confirmacion y guardar
+  useFocusEffect(
+    React.useCallback(() => {
+      const load = async () => {
+        if (confirmacion == true) {
+          setValuePrest(false);
+
+          // Guarda los datos en el storage
+          await onSaveCronograma(dataPerson, editValue);
+
+          // Editar
+          if (editValue) {
+            navigation.navigate("Detalle", {
+              id: id,
+              typeColor: typeColor,
+              enable: enable ? enable : null,
+              dataConfiguration: dataConfiguration,
+            });
+          } else {
+            setClean(true);
+          }
+        }
+      };
+
+      load(); // llamado a la función
+    }, [confirmacion])
+  );
   return (
     <View style={[styles.container]}>
       <Header
@@ -171,6 +199,15 @@ const NewForm = (props) => {
           user={user}
           dataConfiguration={dataConfiguration}
           valueProps={props.route.params}
+        />
+
+        {/* modal de USURA */}
+        <Usura
+          isVisible={isVisible}
+          setIsVisible={setIsVisible}
+          tea={tea}
+          uuid={dataPerson?.uuid}
+          setConfirmacion={setConfirmacion}
         />
         <View
           style={{

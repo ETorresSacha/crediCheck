@@ -162,24 +162,24 @@ export const calculoFRCA = (data) =>{
  
  export const sistemaFrances = (data)=>{
         // Tipo de periodo
-        let periodo
-            switch (data?.periodo) {
-        case 'Mensual':
-            periodo = 30
-            break
+//         let periodo
+//             switch (data?.periodo) {
+//         case 'Mensual':
+//             periodo = 30
+//             break
 
-        case 'Quincenal':
-            periodo = 15
-            break
+//         case 'Quincenal':
+//             periodo = 15
+//             break
 
-        case 'Semanal':
-            periodo = 7
-            break
+//         case 'Semanal':
+//             periodo = 7
+//             break
 
-        case 'Diario':
-            periodo = 1
-            break
-    }
+//         case 'Diario':
+//             periodo = 1
+//             break
+//     }
 
         // calulo de TED (tasa efectiva diaria)
         const resultTEM = data?.interes
@@ -187,6 +187,7 @@ export const calculoFRCA = (data) =>{
 
         // Cálculo FRCA
         let resultFRCA = FRCA(data)
+  
         
         let acumFRCA = []
          let cronograma=[]
@@ -202,13 +203,14 @@ export const calculoFRCA = (data) =>{
                 Dias:diasXmes(data,i-1), 
                 DiasAcum:diasAcum(data,i-1),
                 FRC :solutionFRC(resultTED,data,i,acumFRCA),
-                cuotaInteres:CuotIntFrances(data,i-1,resultTEM,periodo,resultFRCA,newCapital).resultInt,
-                cuotaCapital:CuotIntFrances(data,i-1,resultTEM,periodo,resultFRCA,newCapital).resultCap,
-                capital:CuotIntFrances(data,i-1,resultTEM,periodo,resultFRCA,newCapital).resultCapRest,
-                cuotaFinal : CuotIntFrances(data,i-1,resultTEM,periodo,resultFRCA,newCapital).resultCuoFinal,
+                cuotaInteres:CuotIntFrances(data,i-1,resultTEM,resultFRCA,newCapital).resultInt,
+                cuotaCapital:CuotIntFrances(data,i-1,resultTEM,resultFRCA,newCapital).resultCap,
+                capital:CuotIntFrances(data,i-1,resultTEM,resultFRCA,newCapital).resultCapRest,
+                cuotaFinal : CuotIntFrances(data,i-1,resultTEM,resultFRCA,newCapital).resultCuoFinal,
                 mora:0
             })
 
-         }
+        }
+                 
        return cronograma  
     }

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
-const Usura = ({ isVisible, setIsVisible, tcea }) => {
+const Usura = ({ isVisible, setIsVisible, tea, uuid, setConfirmacion }) => {
   return (
     <Modal
       transparent={true}
@@ -29,7 +29,7 @@ const Usura = ({ isVisible, setIsVisible, tcea }) => {
                 <Text style={styles.textTitle}>
                   La Tasa Efectiva Anual (TEA) calculada para este préstamo es
                   de
-                  <Text style={styles.teaValue}> {tcea} %</Text>.{"\n"}
+                  <Text style={styles.teaValue}> {tea} %</Text>.{"\n"}
                 </Text>
 
                 <Text style={styles.textTitle}>
@@ -50,23 +50,29 @@ const Usura = ({ isVisible, setIsVisible, tcea }) => {
             </View>
 
             {/*   Botones de acción */}
-            <View style={styles.buttonContainer}>
-              {/* Botón de Seguridad (Verde) */}
-              <TouchableOpacity
-                style={[styles.button, styles.safeButton]}
-                onPress={() => setIsVisible(false)}
-              >
-                <Text style={styles.buttonText}>VOLVER</Text>
-              </TouchableOpacity>
+            {uuid ? (
+              <View style={styles.buttonContainer}>
+                {/* Botón de Seguridad (Verde) */}
+                <TouchableOpacity
+                  style={[styles.button, styles.safeButton]}
+                  onPress={() => {
+                    setConfirmacion(false), setIsVisible(false);
+                  }}
+                >
+                  <Text style={styles.buttonText}>VOLVER</Text>
+                </TouchableOpacity>
 
-              {/* Botón de Riesgo (Rojo) */}
-              <TouchableOpacity
-                style={[styles.button, styles.riskButton]}
-                onPress={() => setIsVisible(false)}
-              >
-                <Text style={styles.buttonText}>ACEPTO</Text>
-              </TouchableOpacity>
-            </View>
+                {/* Botón de Riesgo (Rojo) */}
+                <TouchableOpacity
+                  style={[styles.button, styles.riskButton]}
+                  onPress={() => {
+                    setConfirmacion(true), setIsVisible(false);
+                  }}
+                >
+                  <Text style={styles.buttonText}>ACEPTO</Text>
+                </TouchableOpacity>
+              </View>
+            ) : null}
           </View>
         </View>
       </TouchableWithoutFeedback>

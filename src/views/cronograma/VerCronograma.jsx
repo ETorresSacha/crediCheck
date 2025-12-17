@@ -10,6 +10,7 @@ const VerCronograma = (props) => {
   const editValue = props.route.params?.editValue;
   const typeColor = props.route.params?.typeColor;
   const dataConfiguration = props.route.params?.dataConfiguration;
+  const interes = props.route.params?.interes;
 
   return (
     <View style={styles.container}>
@@ -25,7 +26,11 @@ const VerCronograma = (props) => {
           dataConfiguration,
         }}
       />
-      <Cronograma data={user} dataConfiguration={dataConfiguration} />
+      <Cronograma
+        data={user}
+        dataConfiguration={dataConfiguration}
+        interes={interes}
+      />
     </View>
   );
 };

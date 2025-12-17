@@ -51,13 +51,16 @@ export const MonSegDM = (TSegDD,capital,dias)=>{
 }
 
 // Cálculo del interés de la cuota
-export const IntCuo = (TEM,periodo,dias,capital)=>{
-    const result = ((Math.pow((1+(TEM/100)),(dias/periodo)))-1)*capital
+export const IntCuo = (TEM,dias,capital)=>{
+    
+    const result = ((Math.pow((1+(TEM/100)),(dias/30)))-1)*capital
+    
     return result
 }
 
 // Cálculo del capital de la cuota
 export const CapitalCuo =(capital,FRCA,IntCuo)=>{
+    
     const result = (capital/FRCA) - IntCuo 
     return result
 }
@@ -69,7 +72,7 @@ export const CM = (capital,FRCA,MonSegDM)=>{
 }
 
 // Cálculo de la tasa de costo efectivo anual
-export const TCEA =(tm,n)=>{
+export const TEA =(tm,n)=>{
     const result = ((Math.pow((1+parseFloat(tm)/100),(n)))-1)*100
     return Number.parseFloat(result).toFixed(2)
 
@@ -97,7 +100,7 @@ export const mora = (intMoratorio,montoCapital,diasRetraso)=>{
     const result = (intMoratorio*montoCapital*diasRetraso)/100
     return Number.parseFloat(result).toFixed(2)
 }
-// Cálculo del interés neto
+
 
 
 
