@@ -143,7 +143,6 @@ const Detail = (props) => {
     ]);
   };
 
-  console.log("dataSeev: ", dataSee);
   return (
     <View style={styles.container}>
       {dataSee == undefined ? (

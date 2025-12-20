@@ -15,7 +15,7 @@ import { validationConfiguration } from "../../../utils/validation/Validation";
 import UseStorageConfiguration from "../../../components/hooks/UseHookConfiguration";
 import { RFPercentage } from "react-native-responsive-fontsize";
 
-const Configuration = ({
+const InteresMortorio = ({
   enablerConf,
   setEnableConf,
   dataConfiguration,
@@ -123,13 +123,11 @@ const Configuration = ({
       </View> */}
 
           {/* Interés Moratorio */}
-          <View style={{ paddingTop: 10 }}>
-            <Text style={{ color: "gray" }}>
-              Aplicable solo cuando existe mora
-            </Text>
-          </View>
+
           <View style={styles.containerInput}>
-            <Text>Interés Moratorio</Text>
+            <Text style={{ fontFamily: "Palatino", fontSize: 18 }}>
+              Interés Moratorio:
+            </Text>
             <View style={styles.inputView}>
               <TextInput
                 value={dataConfiguration?.intMoratorio}
@@ -146,6 +144,21 @@ const Configuration = ({
               <Text style={{ fontSize: 20 }}>%</Text>
             </View>
           </View>
+          <View
+            style={{
+              justifyContent: "center",
+            }}
+          >
+            <Text
+              style={{
+                color: "gray",
+                fontSize: 11,
+              }}
+            >
+              "En caso de mora, se aplicará un recargo porcentual adicional a la
+              tasa de interés diaria establecida."
+            </Text>
+          </View>
 
           <View style={styles.buttonContainer}>
             <TouchableOpacity
@@ -161,7 +174,7 @@ const Configuration = ({
   );
 };
 
-export default Configuration;
+export default InteresMortorio;
 
 const styles = StyleSheet.create({
   container: {
@@ -173,14 +186,14 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   containerInput: {
-    display: "flex",
+    width: 230,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginLeft: 10,
   },
   modalContent: {
     backgroundColor: "beige",
-    // borderRadius: 2,
     position: "absolute",
     top: "15%",
     left: "10%",
@@ -194,15 +207,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     gap: 5,
-    alignItems: "flex-end",
+    alignItems: "center",
   },
   input: {
     alignItems: "center",
     textAlign: "center",
     color: "black",
     borderBottomColor: "black",
-    borderBottomWidth: 1,
     width: 60,
+
     fontSize: 17,
   },
   buttonContainer: {
@@ -223,8 +236,8 @@ const styles = StyleSheet.create({
   textBtn: {
     fontSize: 19,
     lineHeight: 21,
-    fontWeight: "bold",
     letterSpacing: 0.25,
+    fontWeight: "bold",
     color: "white",
     textAlign: "center",
   },

@@ -89,6 +89,7 @@ const Customer = (props) => {
     resultCustomer();
   }, [data, setDataCustomer, inicio, day]);
 
+  //console.log(data);
   return (
     <View style={styles.container}>
       {dataCustomer == undefined ? (

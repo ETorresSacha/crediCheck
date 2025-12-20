@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import InfNegocio from "./modalOptions/InfNegocio";
-import Configuration from "./modalOptions/Configuration";
+import InteresMoratorio from "./modalOptions/InteresMoratorio";
 import AcercaApp from "./modalOptions/AcercaApp";
 
 const optionsData = [
@@ -106,7 +106,7 @@ const ModalConfigPersonal = ({
         setDataHome={setDataHome}
         setEnable={setEnable}
       />
-      <Configuration
+      <InteresMoratorio
         enablerConf={enablerConf}
         setEnableConf={setEnableConf}
         dataConfiguration={dataConfiguration}
