@@ -216,6 +216,7 @@ export const CuotInt = (data,i,tem,periodo,resultFRCA,newCapital,TSegM)=>{
 
 //TODO --> CÁLCULO DE LA MORA 
 export const calculoMora = (data, dataConfiguration,interes)=>{
+    
     let mora
     
     let ccv = data?.cuotaFinal*0.02 // Comisión de Cobranza Variable (soles)--> se aplica el 2% del monto de la cuota
@@ -331,12 +332,11 @@ export const calculoMoraSimple = (data, dataConfiguration)=>{
 
 export const calculoCanlelarDeuda =(resultPrestamo ,dataConfiguration,interes)=>{
 
-   
     // Calculamos la mora para cada cuota
     let moraData = resultPrestamo.map(element=>{  
         let montoMora = element?.mora
         if (!element?.statusPay){
-            montoMora = calculoMora(element,dataConfiguration)
+            montoMora = calculoMora(element,dataConfiguration,interes)
         }
         return {...element,mora:montoMora}
     })
