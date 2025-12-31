@@ -77,10 +77,9 @@ Infraestructura orientada a la integridad y disponibilidad de la información:
 * **Sincronización Cloud:** Exportación de datos críticos a servicios en la nube, garantizando acceso multiplataforma.
 
 <div style="display: flex; justify-content: space-between;">
-   <img src="https://github.com/user-attachments/assets/c7c49a91-438b-47f3-8de1-2364ee396ea5" alt="Nuevo cliente" width="200">
-   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/7a18f218-fef2-4fde-baf5-45721200c6aa" alt="Nuevo cliente" width="200">
-   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/7a18f218-fef2-4fde-baf5-45721200c6aa" alt="Nuevo cliente" width="200">
-
+   <img src="https://github.com/user-attachments/assets/c7c49a91-438b-47f3-8de1-2364ee396ea5" width="200">
+   <img src="https://github.com/user-attachments/assets/b9001be2-7386-4f0c-a0ae-cac68644bef2" width="200">
+   <img src="https://github.com/user-attachments/assets/36603747-9af3-4a41-99bd-a926bece3331"  width="200">
    <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/7a18f218-fef2-4fde-baf5-45721200c6aa" alt="Nuevo cliente" width="200">
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/d5a187e7-2957-4c6c-a90a-549052b55382" alt="Leyenda" width="200">
 </div>
