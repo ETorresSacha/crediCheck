@@ -30,9 +30,8 @@ La interfaz ha sido diseñada para ofrecer una gestión fluida y eficiente de la
 <div style="display: flex; justify-content: space-between;">
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/4b6f11a2-3ce1-47bf-931d-a2793114f0d3" alt="Home" width="200">
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/e6fedbca-7a02-4e68-bfc9-077ed168f70a" alt="Clientes" width="200">
-  <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/b20c36b8-53b7-4c81-800d-dd8afbd1d465" alt="Clientes cancelados" width="200">
-  <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/5e785c0a-c700-4084-a809-3a95a4daafe1" alt="Evaluar" width="200"> 
-   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/3f4ff3c1-2d12-4799-9b4e-ecf8b2f11557" alt="Detalle" width="200">
+  <img src="https://github.com/user-attachments/assets/9b3be2b5-703c-4d20-b9e7-ba041cb2f731" alt="Evaluar" width="200"> 
+   <img src="https://github.com/user-attachments/assets/b9001be2-7386-4f0c-a0ae-cac68644bef2" alt="Detalle" width="200">
 </div>
 
 ## Funcionalidaddes
@@ -77,7 +76,6 @@ Infraestructura orientada a la integridad y disponibilidad de la información:
 * **Sincronización Cloud:** Exportación de datos críticos a servicios en la nube, garantizando acceso multiplataforma.
 
 <div style="display: flex; justify-content: space-between;">
-    <img src="https://github.com/user-attachments/assets/b9001be2-7386-4f0c-a0ae-cac68644bef2" width="200">
    <img src="https://github.com/user-attachments/assets/c7c49a91-438b-47f3-8de1-2364ee396ea5" width="200">
    <img src="https://github.com/user-attachments/assets/36603747-9af3-4a41-99bd-a926bece3331"  width="200">
 </div>
