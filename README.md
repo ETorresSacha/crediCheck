@@ -4,6 +4,15 @@
 
 ## ¿Prestas dinero y te dificulta llevar un registro de tus clientes?
 "CrediCheck es una aplicación que ayuda a llevar el control de los clientes y permite recordar cuándo se debe cobrar a través de notificaciones."
+# 🚀 CrediCheck: Sistema de Gestión de Microfinanzas y Control de Préstamos
+
+**CrediCheck** es una solución tecnológica integral diseñada para optimizar la administración de carteras de préstamos independientes. La aplicación permite una gestión eficiente de clientes, garantizando la salud financiera mediante el control estricto de cobranzas y la automatización de cálculos financieros complejos.
+
+### 💎 Diferenciales del Proyecto
+
+* **Motor Financiero Basado en el Sistema Francés:** Implementación de algoritmos de amortización bajo el **Método Francés**, garantizando cuotas constantes con una distribución técnica de intereses y capital, emulando los estándares del sistema financiero bancario.
+* **Gestión Proactiva de Cobranza:** Sistema inteligente de notificaciones programadas que alerta al usuario sobre vencimientos próximos y deudas vencidas, minimizando el riesgo de morosidad.
+* **Control de Cartera 360°:** Desde la evaluación y simulación del crédito hasta la liquidación final, permitiendo un seguimiento detallado del comportamiento de pago de cada cliente.
 
 ## 📱 Arquitectura de Vistas y Experiencia de Usuario (UX)
 
