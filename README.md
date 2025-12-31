@@ -30,8 +30,9 @@ La interfaz ha sido diseñada para ofrecer una gestión fluida y eficiente de la
 <div style="display: flex; justify-content: space-between;">
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/4b6f11a2-3ce1-47bf-931d-a2793114f0d3" alt="Home" width="200">
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/e6fedbca-7a02-4e68-bfc9-077ed168f70a" alt="Clientes" width="200">
-  <img src="https://github.com/user-attachments/assets/9b3be2b5-703c-4d20-b9e7-ba041cb2f731" alt="Evaluar" width="200"> 
-   <img src="https://github.com/user-attachments/assets/b9001be2-7386-4f0c-a0ae-cac68644bef2" alt="Detalle" width="200">
+ <img src="https://github.com/user-attachments/assets/b9001be2-7386-4f0c-a0ae-cac68644bef2" alt="Detalle" width="200">
+  <img src="https://github.com/user-attachments/assets/9b3be2b5-703c-4d20-b9e7-ba041cb2f731" alt="Evaluar" width="200" height = "300"> 
+
 </div>
 
 ## Funcionalidaddes
