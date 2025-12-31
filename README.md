@@ -1,5 +1,5 @@
 # CREDICHECK
-<img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/9dc12dd4-cf5b-4617-9f1c-05b4d9f93df1" alt="Descripción de la imagen" width="200">
+<img src="[https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/9dc12dd4-cf5b-4617-9f1c-05b4d9f93df1](https://github.com/ETorresSacha/crediCheck/blob/master/assets/icon.png)" alt="Descripción de la imagen" width="200">
 
 
 ## ¿Prestas dinero y te dificulta llevar un registro de tus clientes?
