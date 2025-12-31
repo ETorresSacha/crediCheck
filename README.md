@@ -1,7 +1,6 @@
 # CREDICHECK
 <img src="https://github.com/user-attachments/assets/9e6c1745-f581-4c1e-9578-25deb6643493"  alt="Descripción de la imagen" width="200">
 
-
 ## ¿Prestas dinero y te dificulta llevar un registro de tus clientes?
 "CrediCheck es una aplicación que ayuda a llevar el control de los clientes y permite recordar cuándo se debe cobrar a través de notificaciones."
 # 🚀 CrediCheck: Sistema de Gestión de Microfinanzas y Control de Préstamos
@@ -32,8 +31,8 @@ La interfaz ha sido diseñada para ofrecer una gestión fluida y eficiente de la
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/4b6f11a2-3ce1-47bf-931d-a2793114f0d3" alt="Home" width="200">
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/e6fedbca-7a02-4e68-bfc9-077ed168f70a" alt="Clientes" width="200">
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/b20c36b8-53b7-4c81-800d-dd8afbd1d465" alt="Clientes cancelados" width="200">
-  <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/3f4ff3c1-2d12-4799-9b4e-ecf8b2f11557" alt="Detalle" width="200">
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/5e785c0a-c700-4084-a809-3a95a4daafe1" alt="Evaluar" width="200"> 
+   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/3f4ff3c1-2d12-4799-9b4e-ecf8b2f11557" alt="Detalle" width="200">
 </div>
 
 ## Funcionalidaddes
@@ -78,7 +77,11 @@ Infraestructura orientada a la integridad y disponibilidad de la información:
 * **Sincronización Cloud:** Exportación de datos críticos a servicios en la nube, garantizando acceso multiplataforma.
 
 <div style="display: flex; justify-content: space-between;">
-  <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/7a18f218-fef2-4fde-baf5-45721200c6aa" alt="Nuevo cliente" width="200">
+   <img src="https://github.com/user-attachments/assets/c7c49a91-438b-47f3-8de1-2364ee396ea5" alt="Nuevo cliente" width="200">
+   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/7a18f218-fef2-4fde-baf5-45721200c6aa" alt="Nuevo cliente" width="200">
+   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/7a18f218-fef2-4fde-baf5-45721200c6aa" alt="Nuevo cliente" width="200">
+
+   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/7a18f218-fef2-4fde-baf5-45721200c6aa" alt="Nuevo cliente" width="200">
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/d5a187e7-2957-4c6c-a90a-549052b55382" alt="Leyenda" width="200">
 </div>
 
