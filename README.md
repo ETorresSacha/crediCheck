@@ -5,13 +5,19 @@
 ## ¿Prestas dinero y te dificulta llevar un registro de tus clientes?
 "CrediCheck es una aplicación que ayuda a llevar el control de los clientes y permite recordar cuándo se debe cobrar a través de notificaciones."
 
-## Vistas
-La aplicación cuenta con las vista:
-* **Home:** En donde se muestra las opciones de ingresar a los Clientes, Clientes cancelados y evaluar (calcula las cuotas por el periodo determinado).
-* **Clientes:** En esta vista muestra todos los clientes registrados con una deuda pendiente.
-* **Clientes cancelados:** En esta vista muestra todos los clientes que ya cancelaron su deuda, sirve como un registro de los clientes más recurrentes.
-* * **Detalle:** Visualizamos los datos registrados y el detalle del préstamo. Dentro de esta vista podemos editar, eliminar el cliente, realizar el pago de la cuota,asi como también, cancelar el mismo, notificaciones (sirve para mandar mensajes por whatsapp, correo electrónico y ralizar llamadas) y también permite ver el cronograma de pagos.
-* **Evaluar:** Permite evaluar la cantidad de la cuota a pagar de acuerdo al periodo seleccionado.
+## 📱 Arquitectura de Vistas y Experiencia de Usuario (UX)
+
+La interfaz ha sido diseñada para ofrecer una gestión fluida y eficiente de la cartera de préstamos, estructurada en los siguientes módulos:
+
+* **🏠 Dashboard Principal (Home):** Panel central con acceso rápido a la gestión de clientes activos, historial de cuentas liquidadas y el motor de simulación de créditos (evaluación).
+* **👥 Gestión de Cartera Activa:** Vista especializada que centraliza la información de todos los clientes con obligaciones pendientes, permitiendo un monitoreo en tiempo real del estado de los créditos.
+* **✅ Historial de Cuentas Liquidadas:** Registro histórico de clientes que han cancelado exitosamente sus deudas, facilitando el análisis de recurrencia y perfil de cumplimiento.
+* **📊 Módulo de Evaluación de Riesgo:** Herramienta de simulación que permite proyectar las cuotas y el impacto financiero de un préstamo según el periodo y la tasa seleccionada antes de su aprobación.
+* **🔍 Centro de Control Detallado (Vista Detalle):** El núcleo de gestión de la app, que permite:
+    * **Operaciones:** Edición de perfiles, eliminación de registros y ejecución de pagos de cuotas.
+    * **Liquidación:** Opción de cancelación anticipada del préstamo.
+    * **CRM & Comunicación:** Integración con WhatsApp, correo electrónico y llamadas directas para una gestión de cobranza eficiente.
+    * **Auditoría:** Visualización completa del cronograma de pagos para transparencia con el cliente.
 
 <div style="display: flex; justify-content: space-between;">
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/4b6f11a2-3ce1-47bf-931d-a2793114f0d3" alt="Home" width="200">
@@ -61,7 +67,7 @@ Gestión proactiva de la cartera para mejorar la tasa de recuperabilidad:
 ### ☁️ Respaldo y Seguridad en la Nube
 Infraestructura orientada a la integridad y disponibilidad de la información:
 * **Sincronización Cloud:** Exportación de datos críticos a servicios en la nube, garantizando acceso multiplataforma.
-* **Backup Automático:** Sistema de respaldo de base de datos (clientes y cronogramas) para prevenir la pérdida de información sensible.
+
 <div style="display: flex; justify-content: space-between;">
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/7a18f218-fef2-4fde-baf5-45721200c6aa" alt="Nuevo cliente" width="200">
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/d5a187e7-2957-4c6c-a90a-549052b55382" alt="Leyenda" width="200">
