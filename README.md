@@ -24,7 +24,7 @@ La aplicación cuenta con las vista:
 ## Funcionalidaddes
 
 Dentro de las funcionalidades mas destacadas se muestran:
-* **Pagar las cuentas** Permite la funcionalidad de realizar los pagos de acuerdo a las fechas programadas, calcula la mora, y tambien se puede hacer el cancelar la deuda de manera anticipada.
+
 * ### 💰 Módulo de Gestión de Pagos y Amortización
 
 El motor financiero de la aplicación ha sido diseñado para replicar la lógica de negocio de instituciones bancarias, permitiendo un control preciso sobre el ciclo de vida del préstamo:
@@ -40,8 +40,28 @@ La aplicación integra un módulo de control financiero basado en la normativa v
 * **Control de Usura:** Implementación de validadores lógicos que detectan automáticamente si la tasa de interés ingresada excede los límites legales permitidos.
 * **Tasa Máxima BCR:** Aplicación dinámica de la **Tasa Máxima de Interés Compensatorio**, asegurando que los préstamos entre personas naturales se mantengan dentro del marco legal.
 * **Alertas de Cumplimiento:** Sistema de advertencia al usuario en tiempo real ante intentos de configuración de tasas no permitidas, mitigando riesgos legales en las operaciones.
-* **Nuevo  cliente:** Permite agregar a la lista a un nuevo cliente.
-* **Leyenda:** Mediante un diagrama nos permite visualizar los tipos de clientes que tenemos registrados.
+## 🚀 Funcionalidades Principales
+
+### 💰 Gestión de Pagos y Amortización Financiera
+El motor financiero ha sido diseñado para replicar la lógica de instituciones bancarias, permitiendo un control preciso del ciclo de vida del préstamo:
+* **Procesamiento de Cuotas:** Registro y validación de pagos vinculados a un cronograma dinámico de fechas programadas.
+* **Cálculo Automático de Mora:** Algoritmo para la detección de atrasos y cálculo de penalidades en tiempo real, basado en días excedidos.
+* **Liquidación Anticipada:** Funcionalidad para la cancelación total de la deuda antes del vencimiento con recalculo de intereses devengados.
+
+### ⚖️ Cumplimiento Normativo (Legal Tech)
+Implementación de reglas de negocio basadas en la normativa vigente del **BCR (Banco Central de Reserva del Perú)**:
+* **Prevención de Usura:** Validadores lógicos que impiden la configuración de tasas que excedan los límites legales permitidos.
+* **Tasa Máxima BCR:** Aplicación automática de la Tasa Máxima de Interés Compensatorio para operaciones entre personas ajenas al sistema financiero.
+
+### 🔔 Sistema de Notificaciones Inteligentes
+Gestión proactiva de la cartera para mejorar la tasa de recuperabilidad:
+* **Alertas Preventivas:** Notificaciones automáticas para clientes con plazos de deuda próximos a vencer.
+* **Detección de Vencimientos:** Identificación inmediata y alerta de clientes con plazos excedidos para gestión de cobranza.
+
+### ☁️ Respaldo y Seguridad en la Nube
+Infraestructura orientada a la integridad y disponibilidad de la información:
+* **Sincronización Cloud:** Exportación de datos críticos a servicios en la nube, garantizando acceso multiplataforma.
+* **Backup Automático:** Sistema de respaldo de base de datos (clientes y cronogramas) para prevenir la pérdida de información sensible.
 <div style="display: flex; justify-content: space-between;">
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/7a18f218-fef2-4fde-baf5-45721200c6aa" alt="Nuevo cliente" width="200">
   <img src="https://github.com/ETorresSacha/appEvaluarCliente/assets/122553836/d5a187e7-2957-4c6c-a90a-549052b55382" alt="Leyenda" width="200">
