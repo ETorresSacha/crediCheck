@@ -3,7 +3,6 @@ import { View, StyleSheet, Text } from "react-native";
 
 const DetailCalculator = ({ resultCuota, periodo }) => {
   const cuota = resultCuota[0]?.cuotaFinal;
-  console.log("cuota detail calculator: ", cuota);
 
   return (
     <View style={styles.container}>

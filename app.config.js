@@ -1,4 +1,8 @@
-{
+import 'dotenv/config'; 
+// He modificado la extensión del archivo de .json a .js para poder importar las variables de entorno
+// Esto es útil para mantener las claves y configuraciones sensibles fuera del control de versiones.
+// app.json ahora es app.config.js - y se esta exportando un objeto JavaScript, ver linea abajo.
+export default {
   "expo": {
     "name": "crediCheck",
     "slug": "crediCheck",
@@ -41,6 +45,17 @@
         "projectId": "c4c321b6-ea4e-4ea6-8abc-93b5b9e7bf21"
       }
     },
-    "owner": "erikk31"
+    "owner": "erikk31",
+    extra: {
+      firebaseConfig: {
+        apiKey: process.env.API_KEY,
+        authDomain: process.env.AUTH_DOMAIN,
+        projectId: process.env.PROJECT_ID,
+        storageBucket: process.env.STORAGE_BUCKET,
+        messagingSenderId: process.env.MESSAGING_SENDER_ID,
+        appId: process.env.APP_ID,
+        measurementId: process.env.MEASUREMENT_ID
+      }
+    }
   }
 }

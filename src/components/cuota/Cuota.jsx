@@ -26,6 +26,7 @@ const Cuota = ({
       typeColor,
       enable,
       dataConfiguration,
+      interes: user?.interes,
     });
   };
 
