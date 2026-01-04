@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "@expo/vector-icons/AntDesign";
 //import { MaterialDesignIcons } from "@expo/vector-icons";
@@ -11,6 +11,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+//import { View, Text, ActivityIndicator, FlatList } from 'react-native';
 import DatePrestamo from "../date/DatePrestamo";
 import { useFocusEffect } from "@react-navigation/native";
 //import { RadioButton } from "react-native-paper";
@@ -68,6 +69,30 @@ const Prestamo = ({
       setValue(""); // Para setear el periodo a un estado de inicio
     }, [valuePrest, cleanCalculator, clean])
   );
+
+  //todo--> este código es para que saber cuanto es la tasa de usura utilizando la api del bcr
+  //todo--> se aplicara mas adelate, se realizara una sola actualizacion diaria de esta tasa ( falta crear la peticion diaria)
+  // const [datos, setDatos] = useState([]);
+  // const [cargando, setCargando] = useState(true);
+
+  // useEffect(() => {
+  //   // Función para obtener los datos
+  //   const obtenerDatos = async () => {
+  //     try {
+  //       const respuesta = await fetch(
+  //         "https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PD38590DD/json"
+  //       );
+  //       const resultado = await respuesta.json();
+  //       setDatos(resultado); // Guardamos los datos en el estado
+  //     } catch (error) {
+  //       console.error("Error al jalar datos:", error);
+  //     } finally {
+  //       setCargando(false); // Quitamos el indicador de carga
+  //     }
+  //   };
+
+  //   obtenerDatos();
+  // }, []);
 
   return (
     <View style={styles.container}>
@@ -196,9 +221,7 @@ const Prestamo = ({
             />
           </TouchableOpacity>
         ) : (
-          <View
-            style={{ width: RFPercentage(6), backgroundColor: "red" }}
-          ></View>
+          <View style={{ width: RFPercentage(6) }}></View>
         )}
       </View>
 
@@ -284,7 +307,7 @@ const styles = StyleSheet.create({
   },
   iconAlert: {
     borderRadius: 10,
-    width: 40,
+    width: RFPercentage(6),
     alignItems: "center",
     borderColor: "yellow",
     borderWidth: 1,
