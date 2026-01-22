@@ -17,6 +17,9 @@ import { validationDataPerson } from "../../utils/validation/Validation";
 import Header from "../../components/header/Header";
 import { TEA } from "../../utils/calculoCuota/Formulas";
 import Usura from "../../modals/usura/Usura,";
+// importación de la base de datos (Firebase)
+import { database } from "../../backend/fb";
+import { collection, addDoc } from "firebase/firestore";
 
 const NewForm = (props) => {
   const uuid = uuidv4();
@@ -130,16 +133,20 @@ const NewForm = (props) => {
       }
     }
   };
-
+  //! PODRIAMOS OPTIMIZAR EL CODIGO TRATANDO DE DON USAR UN ESTADO, SINO DIRECTAMENTE LA FUNCION DE GUARDAR, PERO ESTO SERIA LLAMADO CUANDO CUMPLA LA CONDICION DE USURA, DIRECTMAENTE (VER MAS ADELANTE)
   // Confirmacion y guardar
+
   useFocusEffect(
     React.useCallback(() => {
       const load = async () => {
         if (confirmacion == true) {
           setValuePrest(false);
 
-          // Guarda los datos en el storage
+          // Guarda los datos en el local storage
           await onSaveCronograma(dataPerson, editValue);
+
+          // Guardar clientes en Firestore (Firebase)
+          await addDoc(collection(database, "customers"), dataPerson);
 
           // Editar
           if (editValue) {
@@ -149,14 +156,13 @@ const NewForm = (props) => {
               enable: enable ? enable : null,
               dataConfiguration: dataConfiguration,
             });
-          } else {
-            setClean(true);
           }
+          setClean(true);
         }
       };
 
       load(); // llamado a la función
-    }, [confirmacion])
+    }, [confirmacion]),
   );
   return (
     <View style={[styles.container]}>
